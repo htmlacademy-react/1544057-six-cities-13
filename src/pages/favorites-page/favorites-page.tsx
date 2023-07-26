@@ -1,4 +1,6 @@
+import LocationsItem from '../../components/locations-item/locations-item';
 import Logo from '../../components/logo/logo';
+import { CityName } from '../../const';
 
 export default function FavoritesPage(): JSX.Element {
   return (
@@ -35,11 +37,7 @@ export default function FavoritesPage(): JSX.Element {
             <ul className="favorites__list">
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
+                  <LocationsItem nameCity={CityName.Amsterdam} path='#' isNavItem={false} isActive={false} key={1} />
                 </div>
                 <div className="favorites__places">
                   <article className="favorites__card place-card">
@@ -121,11 +119,7 @@ export default function FavoritesPage(): JSX.Element {
 
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
+                  <LocationsItem nameCity={CityName.Cologne} path='#' isNavItem={false} isActive={false} key={1} />
                 </div>
                 <div className="favorites__places">
                   <article className="favorites__card place-card">

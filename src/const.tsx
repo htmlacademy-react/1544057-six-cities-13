@@ -11,3 +11,12 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unkhown = 'UNKNOWN'
 }
+
+export const CityName = {
+  Amsterdam: 'Amsterdam',
+  Paris: 'Paris',
+  Cologne: 'Cologne',
+  Brussels: 'Brussels',
+  Hamburg: 'Hamburg',
+  Dusseldorf: 'Dusseldorf'
+} as const;
