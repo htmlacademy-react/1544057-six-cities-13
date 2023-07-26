@@ -1,4 +1,6 @@
+import LocationsItem from '../../components/locations-item/locations-item';
 import Logo from '../../components/logo/logo';
+import { CityName } from '../../const';
 
 export default function LoginPage(): JSX.Element {
   return (
@@ -30,11 +32,7 @@ export default function LoginPage(): JSX.Element {
             </form>
           </section>
           <section className="locations locations--login locations--current">
-            <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
-              </a>
-            </div>
+            {<LocationsItem nameCity={CityName.Amsterdam} path='#todo' />}
           </section>
         </div>
       </main>

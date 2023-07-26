@@ -37,7 +37,7 @@ export default function FavoritesPage(): JSX.Element {
             <ul className="favorites__list">
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
-                  <LocationsItem nameCity={CityName.Amsterdam} path='#' isNavItem={false} isActive={false} key={1} />
+                  <LocationsItem nameCity={CityName.Amsterdam} path='' key={1} />
                 </div>
                 <div className="favorites__places">
                   <article className="favorites__card place-card">
@@ -119,7 +119,7 @@ export default function FavoritesPage(): JSX.Element {
 
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
-                  <LocationsItem nameCity={CityName.Cologne} path='#' isNavItem={false} isActive={false} key={1} />
+                  <LocationsItem nameCity={CityName.Cologne} path='#' key={1} />
                 </div>
                 <div className="favorites__places">
                   <article className="favorites__card place-card">

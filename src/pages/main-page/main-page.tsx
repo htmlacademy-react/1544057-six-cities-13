@@ -40,7 +40,7 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {Array.from(Object.values(CityName), (cityName, index) => cityName === CityName.Paris ? <LocationsItem nameCity={cityName} path='#' isNavItem isActive key={index} /> : <LocationsItem nameCity={cityName} path='#' isNavItem isActive={false} key={index} />)}
+              {Array.from(Object.values(CityName), (cityName, index) => cityName === CityName.Paris ? <LocationsItem nameCity={cityName} path='#todo' isNavItem isActive key={index} /> : <LocationsItem nameCity={cityName} path='#' isNavItem key={index} />)}
             </ul>
           </section>
         </div>
