@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../const';
 
-export default function OfferPage(): JSX.Element {
+export default function NotFoundPage(): JSX.Element {
   return (
     <div className="page page--gray">
       <header className="header">
