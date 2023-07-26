@@ -1,5 +1,6 @@
 import LocationsItem from '../../components/locations-item/locations-item';
 import Logo from '../../components/logo/logo';
+import UserMenu from '../../components/user-menu/user-menu';
 import { CityName } from '../../const';
 
 export default function FavoritesPage(): JSX.Element {
@@ -9,23 +10,7 @@ export default function FavoritesPage(): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <Logo />
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
-                  </a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <UserMenu userMail='Oliver.conner@gmail.com' favoriteCount={3} />
           </div>
         </div>
       </header>
