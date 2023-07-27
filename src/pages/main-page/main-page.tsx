@@ -1,5 +1,6 @@
 import LocationsItem from '../../components/locations-item/locations-item';
 import Logo from '../../components/logo/logo';
+import { CardType } from '../../components/offer-card/const';
 import OfferCard from '../../components/offer-card/offer-card';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CityName } from '../../const';
@@ -50,7 +51,7 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {Array.from({ length: offersCount }, (_, index) => <OfferCard key={index} />)}
+                {Array.from({ length: offersCount }, (_, index) => <OfferCard cardType={CardType.Cities} key={index} />)}
               </div>
             </section>
             <div className="cities__right-section">
