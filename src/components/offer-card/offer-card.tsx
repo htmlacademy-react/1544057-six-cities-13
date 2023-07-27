@@ -12,7 +12,7 @@ export default function OfferCard({ cardType }: OfferCardProps): JSX.Element {
       </div>
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src="img/apartment-01.jpg" width={CardImgSize[cardType].Width} height={CardImgSize[cardType].Heigth} alt="Place image" />
+          <img className="place-card__image" src="img/apartment-01.jpg" {...CardImgSize[cardType]} alt="Place image" />
         </a>
       </div>
       <div className={`${cardType}__card-info place-card__info`}>

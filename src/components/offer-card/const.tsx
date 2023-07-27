@@ -4,31 +4,18 @@ enum CardType {
   NearPlaces = 'near-places'
 }
 
-const CardImgWidth = {
-  [CardType.Favorites]: 150,
-  [CardType.Cities]: 260,
-  [CardType.NearPlaces]: 260,
-} as const;
-
-const CardImgHeight = {
-  [CardType.Favorites]: 110,
-  [CardType.Cities]: 200,
-  [CardType.NearPlaces]: 200,
-} as const;
-
 const CardImgSize = {
   [CardType.Favorites]: {
-    Heigth: CardImgHeight[CardType.Favorites],
-    Width: CardImgWidth[CardType.Favorites]
+    heigth: 110,
+    width: 150
   },
   [CardType.Cities]: {
-    Heigth: CardImgHeight[CardType.Cities],
-    Width: CardImgWidth[CardType.Cities],
+    heigth: 200,
+    width: 260
   },
   [CardType.NearPlaces]: {
-    Heigth: CardImgHeight[CardType.NearPlaces],
-    Width: CardImgWidth[CardType.NearPlaces]
-
+    heigth: 200,
+    width: 260
   }
 } as const;
 
