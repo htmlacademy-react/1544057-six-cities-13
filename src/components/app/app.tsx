@@ -1,12 +1,50 @@
-import MainPage from '../../pages/main-page/main-page';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-type AppMainProps = {
+import { AppRoute, AuthorizationStatus } from '../../const';
+import FavoritesPage from '../../pages/favorites-page/favorites-page';
+import LoginPage from '../../pages/login-page/login-page';
+import MainPage from '../../pages/main-page/main-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import OfferPage from '../../pages/offer-page/offer-page';
+import PrivateRoute from '../private-route/private-route';
+
+type AppProps = {
   offersCount: number;
 }
 
-function App({ offersCount }: AppMainProps): JSX.Element {
+function App({ offersCount }: AppProps): JSX.Element {
   return (
-    <MainPage offersCount={offersCount} />
+    <BrowserRouter>
+      <Routes>
+        <Route path={AppRoute.Main} >
+          <Route
+            index
+            element={<MainPage offersCount={offersCount} />}
+          />
+          <Route
+            path={AppRoute.Login}
+            element={<LoginPage />}
+          />
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <PrivateRoute
+                authorizationStatus={AuthorizationStatus.NoAuth}
+              >
+                <FavoritesPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Offer}
+            element={<OfferPage />}
+          />
+
+
+          <Route path='*' element={<NotFoundPage />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
