@@ -23,5 +23,6 @@ const CardRatingWidth = {
   [CardType.Favorites]: '100%',
   [CardType.Cities]: '80%',
   [CardType.NearPlaces]: '80%'
-};
+} as const;
+
 export { CardImgSize, CardRatingWidth, CardType };
