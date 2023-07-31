@@ -9,7 +9,7 @@ type MainPageProps = {
   offersCount: number;
 };
 
-export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
+export default function MainPage({ offersCount }: MainPageProps): React.JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">

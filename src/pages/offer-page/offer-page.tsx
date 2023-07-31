@@ -3,7 +3,7 @@ import { CardType } from '../../components/offer-card/const';
 import OfferCard from '../../components/offer-card/offer-card';
 import UserMenu from '../../components/user-menu/user-menu';
 
-export default function OfferPage(): JSX.Element {
+export default function OfferPage(): React.JSX.Element {
   return (
     <div className="page">
       <header className="header">

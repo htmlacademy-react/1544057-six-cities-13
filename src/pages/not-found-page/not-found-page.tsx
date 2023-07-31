@@ -2,7 +2,7 @@ import './not-found-page.css';
 
 import Logo from '../../components/logo/logo';
 
-export default function NotFoundPage(): JSX.Element {
+export default function NotFoundPage(): React.JSX.Element {
   return (
     <div className="page page--gray">
       <header className="header">

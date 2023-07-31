@@ -7,7 +7,7 @@ type LocationsItemProps = {
   isActive?: boolean;
 }
 
-export default function LocationsItem({ nameCity, path, isNavItem = false, isActive = false }: LocationsItemProps): JSX.Element {
+export default function LocationsItem({ nameCity, path, isNavItem = false, isActive = false }: LocationsItemProps): React.JSX.Element {
   const content = (
     <NavLink
       className={`locations__item-link ${isActive ? 'tabs__item--active' : ''}`}

@@ -2,7 +2,7 @@ import LocationsItem from '../../components/locations-item/locations-item';
 import Logo from '../../components/logo/logo';
 import { CityName } from '../../const';
 
-export default function LoginPage(): JSX.Element {
+export default function LoginPage(): React.JSX.Element {
   return (
     <div className="page page--gray page--login">
       <header className="header">

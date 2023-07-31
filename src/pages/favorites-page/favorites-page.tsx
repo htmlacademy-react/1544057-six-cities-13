@@ -5,7 +5,7 @@ import OfferCard from '../../components/offer-card/offer-card';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CityName } from '../../const';
 
-export default function FavoritesPage(): JSX.Element {
+export default function FavoritesPage(): React.JSX.Element {
   return (
     <div className="page">
       <header className="header">

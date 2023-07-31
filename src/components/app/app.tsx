@@ -12,7 +12,7 @@ type AppProps = {
   offersCount: number;
 }
 
-function App({ offersCount }: AppProps): JSX.Element {
+function App({ offersCount }: AppProps): React.JSX.Element {
   return (
     <BrowserRouter>
       <Routes>

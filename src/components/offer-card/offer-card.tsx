@@ -4,7 +4,7 @@ type OfferCardProps = {
   cardType: CardType;
 }
 
-export default function OfferCard({ cardType }: OfferCardProps): JSX.Element {
+export default function OfferCard({ cardType }: OfferCardProps): React.JSX.Element {
   return (
     <article className={`${cardType}__card place-card`}>
       <div className="place-card__mark">

@@ -4,10 +4,10 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 
 type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus;
-  children: JSX.Element;
+  children: React.JSX.Element;
 }
 
-function PrivateRoute(props: PrivateRouteProps): JSX.Element {
+function PrivateRoute(props: PrivateRouteProps): React.JSX.Element {
   const { authorizationStatus, children } = props;
 
   return (
