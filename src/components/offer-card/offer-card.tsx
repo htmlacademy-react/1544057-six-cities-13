@@ -1,4 +1,5 @@
 import { Offer } from '../../mocks/types/offers';
+import capitalizeFirstLetter from '../../utils';
 import FavoriteButton from '../favorite-button/favorite-button';
 import PremiumMark from '../premium-mark/premium-mark';
 import RatingView from '../rating-view/rating-view';
@@ -32,7 +33,7 @@ export default function OfferCard({ cardType, offer }: OfferCardProps): React.JS
         <h2 className="place-card__name">
           <a href="#">{offer.title}</a>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{capitalizeFirstLetter(offer.type)}</p>
       </div>
     </article>
   );
