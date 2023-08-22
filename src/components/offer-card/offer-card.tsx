@@ -1,43 +1,48 @@
-import { CardImgSize, CardRatingWidth, CardType } from './const';
+import { Offer } from '../../mocks/types/offers';
+import FavoriteButton from '../favorite-button/favorite-button';
+import { CardImgSize, CardType } from './const';
 
 type OfferCardProps = {
+  offer: Offer;
   cardType: CardType;
 }
 
-export default function OfferCard({ cardType }: OfferCardProps): React.JSX.Element {
+export default function OfferCard({ cardType, offer }: OfferCardProps): React.JSX.Element {
+  const MAX_RATING = 5;
+  const roundedRating = Math.floor(offer.rating);
+  const rating = `${(roundedRating / MAX_RATING) * 100}%`;
+
   return (
     <article className={`${cardType}__card place-card`}>
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+      {
+        offer.isPremium ||
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      }
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src="img/apartment-01.jpg" {...CardImgSize[cardType]} alt="Place image" />
+          <img className="place-card__image" src={offer.previewImage} {...CardImgSize[cardType]} alt="Place image" />
         </a>
       </div>
       <div className={`${cardType}__card-info place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{120}</b>
+            <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark" />
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          {<FavoriteButton isFavorite={offer.isFavorite} className={'place-card__bookmark-button'} iconWidth={18} iconHeight={19} />}
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: CardRatingWidth[cardType] }} />
+            <span style={{ width: rating }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+          <a href="#">{offer.title}</a>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
   );
