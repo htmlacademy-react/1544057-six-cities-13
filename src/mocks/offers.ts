@@ -135,7 +135,7 @@ const offers: Offer[] = [
       'longitude': 2.353499,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 3
   }
