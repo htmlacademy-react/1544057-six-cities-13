@@ -1,6 +1,7 @@
 import { Offer } from '../../mocks/types/offers';
 import FavoriteButton from '../favorite-button/favorite-button';
 import PremiumMark from '../premium-mark/premium-mark';
+import RatingView from '../rating-view/rating-view';
 import { CardImgSize, CardType } from './const';
 
 type OfferCardProps = {
@@ -9,10 +10,6 @@ type OfferCardProps = {
 }
 
 export default function OfferCard({ cardType, offer }: OfferCardProps): React.JSX.Element {
-  const MAX_RATING = 5;
-  const roundedRating = Math.floor(offer.rating);
-  const rating = `${(roundedRating / MAX_RATING) * 100}%`;
-
   return (
     <article className={`${cardType}__card place-card`}>
       {offer.isPremium && <PremiumMark className={'place-card__mark'} />}
@@ -27,14 +24,11 @@ export default function OfferCard({ cardType, offer }: OfferCardProps): React.JS
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          {<FavoriteButton isFavorite={offer.isFavorite} className={'place-card__bookmark-button'} iconWidth={18} iconHeight={19} />}
+          {<FavoriteButton isFavorite={offer.isFavorite} className={'place-card'} iconWidth={18} iconHeight={19} />}
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{ width: rating }} />
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+
+        <RatingView className={'place-card'} ratingValue={offer.rating} displayValue={false} />
+
         <h2 className="place-card__name">
           <a href="#">{offer.title}</a>
         </h2>
