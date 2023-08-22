@@ -1,5 +1,6 @@
 import { Offer } from '../../mocks/types/offers';
 import FavoriteButton from '../favorite-button/favorite-button';
+import PremiumMark from '../premium-mark/premium-mark';
 import { CardImgSize, CardType } from './const';
 
 type OfferCardProps = {
@@ -14,12 +15,7 @@ export default function OfferCard({ cardType, offer }: OfferCardProps): React.JS
 
   return (
     <article className={`${cardType}__card place-card`}>
-      {
-        offer.isPremium ||
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-      }
+      {offer.isPremium && <PremiumMark className={'place-card__mark'} />}
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={offer.previewImage} {...CardImgSize[cardType]} alt="Place image" />
