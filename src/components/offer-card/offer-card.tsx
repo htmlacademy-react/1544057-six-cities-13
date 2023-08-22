@@ -1,5 +1,5 @@
 import { Offer } from '../../mocks/types/offers';
-import capitalizeFirstLetter from '../../utils';
+import { capitalizeFirstLetter } from '../../utils';
 import FavoriteButton from '../favorite-button/favorite-button';
 import PremiumMark from '../premium-mark/premium-mark';
 import RatingView from '../rating-view/rating-view';
