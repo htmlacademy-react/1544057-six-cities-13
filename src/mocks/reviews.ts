@@ -2,7 +2,7 @@ import { OfferReview } from './types/reviews';
 
 const reviews: OfferReview[] = [
   {
-    'id': '22ce00cc-b81b-4085-8a27-aebcd80dd266',
+    'id': '7f52958f-7762-4ee1-aff2-04912cd47888',
     'reviews': [
       {
         'id': 'e78f5c4f-5acb-4047-a561-b4eff8d732dc',
@@ -18,7 +18,7 @@ const reviews: OfferReview[] = [
     ]
   },
   {
-    'id': '8d193608-5355-48c0-83cb-9df6cf53c946',
+    'id': '0959aa00-4de8-400d-91a6-a73ee223b93a',
     'reviews': [
       {
         'id': 'e8bc6b72-8741-4fe8-9dc3-e2d8759fd738',
@@ -34,7 +34,7 @@ const reviews: OfferReview[] = [
     ]
   },
   {
-    'id': '139ca2ad-1da5-44ee-8f66-dea160858386',
+    'id': 'eb9156d7-bc3a-48d2-8244-d000b3e89e82',
     'reviews': [
       {
         'id': '079d6414-b05c-427e-b5d8-7049694d43a1',
@@ -61,35 +61,8 @@ const reviews: OfferReview[] = [
     ]
   },
   {
-    'id': 'aa30f0ef-9fc6-4384-9d68-3750f23ade1c',
+    'id': '7d54ec8d-6359-4a31-89b6-1ed5107a1dcd',
     'reviews': []
-  },
-  {
-    'id': 'd3f7a08e-c795-4081-ba7d-9783d099c300',
-    'reviews': [
-      {
-        'id': '8866fefc-cd3f-4cae-a048-f387c385506c',
-        'comment': 'The house is very good, very happy, hygienic and simple living conditions around it are also very good. I hope to have the opportunity to come back. Thank you.',
-        'date': '2023-07-07T21:00:00.455Z',
-        'rating': 1,
-        'user': {
-          'name': 'Christina',
-          'avatarUrl': 'https://13.design.pages.academy/static/avatar/2.jpg',
-          'isPro': false
-        }
-      },
-      {
-        'id': '0bbdbd81-9f05-4f64-b3fd-6a6a25300b48',
-        'comment': 'Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.',
-        'date': '2023-07-04T21:00:00.455Z',
-        'rating': 1,
-        'user': {
-          'name': 'Isaac',
-          'avatarUrl': 'https://13.design.pages.academy/static/avatar/3.jpg',
-          'isPro': false
-        }
-      }
-    ]
   }
 ];
 

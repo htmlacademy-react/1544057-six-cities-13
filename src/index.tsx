@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './components/app/app';
-import { offers } from './mocks/offers';
+import { extendedOfferMap, offers } from './mocks/offers';
 import reviewsMap from './mocks/reviews';
 
 const root = ReactDOM.createRoot(
@@ -12,6 +12,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offers={offers} reviewsMap={reviewsMap} />
+    <App offers={offers} extendedOfferMap={extendedOfferMap} reviewsMap={reviewsMap} />
   </React.StrictMode>
 );

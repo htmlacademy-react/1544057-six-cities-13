@@ -1,3 +1,5 @@
+import { User } from './reviews';
+
 type Location = {
   latitude: number;
   longitude: number;
@@ -21,3 +23,12 @@ export type Offer = {
   isPremium: boolean;
   rating: number;
 }
+
+export type ExtendedOffer = Omit<Offer, 'previewImage'> & {
+  description: string;
+  bedrooms: number;
+  goods: string[];
+  host: User;
+  images: string[];
+  maxAdults: number;
+};
