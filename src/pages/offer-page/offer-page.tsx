@@ -1,13 +1,14 @@
 import { useParams } from 'react-router-dom';
 
-import FavoriteButton from '../../components/favorite-button/favorite-button';
-import HostView from '../../components/host-view/host-view';
 import Logo from '../../components/logo/logo';
-import { CardType } from '../../components/offer-card/const';
-import OfferCard from '../../components/offer-card/offer-card';
-import PremiumMark from '../../components/premium-mark/premium-mark';
-import RatingView from '../../components/rating-view/rating-view';
-import ReviewView from '../../components/review-view/review-view';
+import FavoriteButton
+  from '../../components/offer/favorite-button/favorite-button';
+import HostView from '../../components/offer/host-view/host-view';
+import { CardType } from '../../components/offer/offer-card/const';
+import OfferCard from '../../components/offer/offer-card/offer-card';
+import PremiumMark from '../../components/offer/premium-mark/premium-mark';
+import RatingView from '../../components/offer/rating-view/rating-view';
+import ReviewView from '../../components/offer/review-view/review-view';
 import UserMenu from '../../components/user-menu/user-menu';
 import { ExtendedOffer, Offer } from '../../mocks/types/offers';
 import { Review } from '../../mocks/types/reviews';
@@ -102,13 +103,14 @@ export default function OfferPage({ offers, reviewsMap, extendedOfferMap }: Offe
               <HostView host={host} description={description} />
 
               <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews?.length}</span></h2>
                 <ul className="reviews__list">
 
                   {reviews?.map((review) => <ReviewView review={review} key={review.id} />)}
 
                 </ul>
               </section>
+
             </div>
           </div>
           <section className="offer__map map"></section>
