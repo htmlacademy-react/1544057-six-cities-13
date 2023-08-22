@@ -1,4 +1,4 @@
-import { User } from '../../mocks/types/reviews';
+import { User } from '../../../mocks/types/reviews';
 
 type HostViewProps = {
   host: User;

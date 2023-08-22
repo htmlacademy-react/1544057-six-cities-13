@@ -16,14 +16,14 @@ type AppProps = {
   extendedOfferMap: Map<string, ExtendedOffer>;
 }
 
-function App({ offersCount }: AppProps): React.JSX.Element {
+function App({ offers, reviewsMap, extendedOfferMap }: AppProps): React.JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main} >
           <Route
             index
-            element={<MainPage offersCount={offersCount} />}
+            element={<MainPage offers={offers} />}
           />
           <Route
             path={AppRoute.Login}
@@ -33,9 +33,9 @@ function App({ offersCount }: AppProps): React.JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.NoAuth}
+                authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavoritesPage />
+                <FavoritesPage offers />
               </PrivateRoute>
             }
           />
