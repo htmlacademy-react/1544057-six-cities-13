@@ -5,10 +5,10 @@ import FavoriteButton
   from '../../components/offer/favorite-button/favorite-button';
 import HostView from '../../components/offer/host-view/host-view';
 import { CardType } from '../../components/offer/offer-card/const';
-import OfferCard from '../../components/offer/offer-card/offer-card';
 import PremiumMark from '../../components/offer/premium-mark/premium-mark';
 import RatingView from '../../components/offer/rating-view/rating-view';
 import ReviewView from '../../components/offer/review-view/review-view';
+import OffersList from '../../components/offers-list/offers-list';
 import UserMenu from '../../components/user-menu/user-menu';
 import { ExtendedOffer, Offer } from '../../mocks/types/offers';
 import { Review } from '../../mocks/types/reviews';
@@ -118,9 +118,9 @@ export default function OfferPage({ offers, reviewsMap, extendedOfferMap }: Offe
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              {offers.map((offer) => <OfferCard cardType={CardType.NearPlaces} offer={offer} key={offer.id} />)}
-            </div>
+
+            <OffersList offers={offers} cardType={CardType.NearPlaces} />
+
           </section>
         </div>
       </main>

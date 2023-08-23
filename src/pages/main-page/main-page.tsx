@@ -50,9 +50,9 @@ export default function MainPage({ offersCount }: MainPageProps): React.JSX.Elem
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {Array.from({ length: offersCount }, (_, index) => <OfferCard cardType={CardType.Cities} key={index} />)}
-              </div>
+
+              <OffersList offers={offers} cardType={CardType.Cities} />
+
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

@@ -8,6 +8,7 @@ import { CardImgSize, CardType } from './const';
 type OfferCardProps = {
   offer: Offer;
   cardType: CardType;
+  onMouseOver?: (event: MouseEvent) => void;
 }
 
 export default function OfferCard({ cardType, offer }: OfferCardProps): React.JSX.Element {
