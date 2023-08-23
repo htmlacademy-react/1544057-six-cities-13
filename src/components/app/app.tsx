@@ -35,7 +35,7 @@ function App({ offers, reviewsMap, extendedOfferMap }: AppProps): React.JSX.Elem
               <PrivateRoute
                 authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavoritesPage offers />
+                <FavoritesPage favoriteOffers={offers} />
               </PrivateRoute>
             }
           />

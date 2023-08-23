@@ -100,7 +100,7 @@ const offers: Offer[] = [
     'price': 205,
     'previewImage': 'https://13.design.pages.academy/static/hotel/12.jpg',
     'city': {
-      'name': 'Paris',
+      'name': 'Amsterdam',
       'location': {
         'latitude': 48.85661,
         'longitude': 2.351499,
@@ -123,7 +123,7 @@ const offers: Offer[] = [
     'price': 798,
     'previewImage': 'https://13.design.pages.academy/static/hotel/3.jpg',
     'city': {
-      'name': 'Paris',
+      'name': 'Cologne',
       'location': {
         'latitude': 48.85661,
         'longitude': 2.351499,
