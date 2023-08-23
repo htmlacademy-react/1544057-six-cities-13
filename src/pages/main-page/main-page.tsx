@@ -1,15 +1,16 @@
 import LocationsItem from '../../components/locations-item/locations-item';
 import Logo from '../../components/logo/logo';
-import { CardType } from '../../components/offer-card/const';
-import OfferCard from '../../components/offer-card/offer-card';
+import { CardType } from '../../components/offer/offer-card/const';
+import OffersList from '../../components/offers-list/offers-list';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CityName } from '../../const';
+import { Offer } from '../../mocks/types/offers';
 
 type MainPageProps = {
-  offersCount: number;
+  offers: Offer[];
 };
 
-export default function MainPage({ offersCount }: MainPageProps): React.JSX.Element {
+export default function MainPage({ offers }: MainPageProps): React.JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -26,7 +27,9 @@ export default function MainPage({ offersCount }: MainPageProps): React.JSX.Elem
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {Array.from(Object.values(CityName), (cityName, index) => cityName === CityName.Paris ? <LocationsItem nameCity={cityName} path='#todo' isNavItem isActive key={index} /> : <LocationsItem nameCity={cityName} path='#' isNavItem key={index} />)}
+              {Array.from(Object.values(CityName), (cityName, index) => cityName === CityName.Paris ?
+                <LocationsItem nameCity={cityName} path='#todo' isNavItem isActive key={index} /> :
+                <LocationsItem nameCity={cityName} path='#todo' isNavItem key={index} />)}
             </ul>
           </section>
         </div>
@@ -34,7 +37,7 @@ export default function MainPage({ offersCount }: MainPageProps): React.JSX.Elem
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in {CityName.Paris}</b>
+              <b className="places__found">{offers.length} places to stay in {CityName.Paris}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
