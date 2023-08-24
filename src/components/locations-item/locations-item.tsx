@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 
-type NavLinkProps = {
+type LocationsItemProps = {
   nameCity: string;
   path: string;
   isNavItem?: boolean;
   isActive?: boolean;
 }
 
-export default function LocationsItem({ nameCity, path, isNavItem = false, isActive = false }: NavLinkProps): JSX.Element {
+export default function LocationsItem({ nameCity, path, isNavItem = false, isActive = false }: LocationsItemProps): React.JSX.Element {
   const content = (
     <NavLink
       className={`locations__item-link ${isActive ? 'tabs__item--active' : ''}`}

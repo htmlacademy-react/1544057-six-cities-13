@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { ExtendedOffer, Offer } from '../../mocks/types/offers';
+import { Review } from '../../mocks/types/reviews';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
@@ -9,17 +11,19 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import PrivateRoute from '../private-route/private-route';
 
 type AppProps = {
-  offersCount: number;
+  offers: Offer[];
+  reviewsMap: Map<string, Review[]>;
+  extendedOfferMap: Map<string, ExtendedOffer>;
 }
 
-function App({ offersCount }: AppProps): JSX.Element {
+function App({ offers, reviewsMap, extendedOfferMap }: AppProps): React.JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main} >
           <Route
             index
-            element={<MainPage offersCount={offersCount} />}
+            element={<MainPage offers={offers} />}
           />
           <Route
             path={AppRoute.Login}
@@ -29,15 +33,15 @@ function App({ offersCount }: AppProps): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.NoAuth}
+                authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavoritesPage />
+                <FavoritesPage favoriteOffers={offers} />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage />}
+            element={<OfferPage offers={offers} extendedOfferMap={extendedOfferMap} reviewsMap={reviewsMap} />}
           />
 
 

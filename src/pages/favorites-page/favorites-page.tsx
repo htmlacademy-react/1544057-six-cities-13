@@ -1,11 +1,15 @@
 import LocationsItem from '../../components/locations-item/locations-item';
 import Logo from '../../components/logo/logo';
-import { CardType } from '../../components/offer-card/const';
-import OfferCard from '../../components/offer-card/offer-card';
+import { CardType } from '../../components/offer/offer-card/const';
+import OffersList from '../../components/offers-list/offers-list';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CityName } from '../../const';
+import { Offer } from '../../mocks/types/offers';
 
-export default function FavoritesPage(): JSX.Element {
+type FavoritePageProps = {
+  favoriteOffers: Offer[];
+}
+export default function FavoritesPage({ favoriteOffers }: FavoritePageProps): React.JSX.Element {
   return (
     <div className="page">
       <header className="header">
@@ -22,24 +26,24 @@ export default function FavoritesPage(): JSX.Element {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <LocationsItem nameCity={CityName.Amsterdam} path='' key={1} />
-                </div>
-                <div className="favorites__places">
-                  <OfferCard cardType={CardType.Favorites} />
-                  <OfferCard cardType={CardType.Favorites} />
-                </div>
-              </li>
+              {Array.from(Object.values(CityName), (cityName) => {
+                const offerPerCity = favoriteOffers.filter(
+                  ({ city }) => cityName === city.name
+                );
 
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <LocationsItem nameCity={CityName.Cologne} path='#' key={1} />
-                </div>
-                <div className="favorites__places">
-                  <OfferCard cardType={CardType.Favorites} />
-                </div>
-              </li>
+                return offerPerCity.length ? (
+                  <li className="favorites__locations-items">
+                    <div className="favorites__locations locations locations--current">
+                      <LocationsItem nameCity={cityName} path='#' />
+                    </div>
+                    <div className="favorites__places">
+                      {
+                        <OffersList offers={offerPerCity} cardType={CardType.Favorites} />
+                      }
+                    </div>
+                  </li>
+                ) : null;
+              })}
             </ul>
           </section>
         </div>

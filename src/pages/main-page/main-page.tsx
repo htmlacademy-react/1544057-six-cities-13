@@ -1,15 +1,16 @@
 import LocationsItem from '../../components/locations-item/locations-item';
 import Logo from '../../components/logo/logo';
-import { CardType } from '../../components/offer-card/const';
-import OfferCard from '../../components/offer-card/offer-card';
+import { CardType } from '../../components/offer/offer-card/const';
+import OffersList from '../../components/offers-list/offers-list';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CityName } from '../../const';
+import { Offer } from '../../mocks/types/offers';
 
 type MainPageProps = {
-  offersCount: number;
+  offers: Offer[];
 };
 
-export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
+export default function MainPage({ offers }: MainPageProps): React.JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -26,7 +27,9 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {Array.from(Object.values(CityName), (cityName, index) => cityName === CityName.Paris ? <LocationsItem nameCity={cityName} path='#todo' isNavItem isActive key={index} /> : <LocationsItem nameCity={cityName} path='#' isNavItem key={index} />)}
+              {Array.from(Object.values(CityName), (cityName, index) => cityName === CityName.Paris ?
+                <LocationsItem nameCity={cityName} path='#todo' isNavItem isActive key={index} /> :
+                <LocationsItem nameCity={cityName} path='#todo' isNavItem key={index} />)}
             </ul>
           </section>
         </div>
@@ -34,7 +37,7 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in {CityName.Paris}</b>
+              <b className="places__found">{offers.length} places to stay in {CityName.Paris}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -50,9 +53,9 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {Array.from({ length: offersCount }, (_, index) => <OfferCard cardType={CardType.Cities} key={index} />)}
-              </div>
+
+              <OffersList offers={offers} cardType={CardType.Cities} />
+
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
