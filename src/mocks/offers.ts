@@ -143,7 +143,7 @@ const offers: Offer[] = [
 
 const extendedOffer: ExtendedOffer[] = [
   {
-    'id': '7f52958f-7762-4ee1-aff2-04912cd47888',
+    'id': '22ce00cc-b81b-4085-8a27-aebcd80dd266',
     'title': 'Canal View Prinsengracht',
     'description': 'I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.',
     'type': 'house',
@@ -195,7 +195,7 @@ const extendedOffer: ExtendedOffer[] = [
     'maxAdults': 1
   },
   {
-    'id': '0959aa00-4de8-400d-91a6-a73ee223b93a',
+    'id': '8d193608-5355-48c0-83cb-9df6cf53c946',
     'title': 'Amazing and Extremely Central Flat',
     'description': 'Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.',
     'type': 'house',
@@ -248,7 +248,7 @@ const extendedOffer: ExtendedOffer[] = [
     'maxAdults': 9
   },
   {
-    'id': 'eb9156d7-bc3a-48d2-8244-d000b3e89e82',
+    'id': '48c7fee7-81b9-4ed9-9d4c-7710fcae40bf',
     'title': 'The Pondhouse - A Magical Place',
     'description': 'This is a place for dreamers to reset, reflect, and create. Designed with a \'slow\' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.',
     'type': 'apartment',
@@ -293,7 +293,7 @@ const extendedOffer: ExtendedOffer[] = [
     'maxAdults': 5
   },
   {
-    'id': '7d54ec8d-6359-4a31-89b6-1ed5107a1dcd',
+    'id': 'aa30f0ef-9fc6-4384-9d68-3750f23ade1c',
     'title': 'Canal View Prinsengracht',
     'description': 'I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.',
     'type': 'apartment',
