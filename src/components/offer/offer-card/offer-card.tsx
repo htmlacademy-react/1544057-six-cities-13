@@ -1,3 +1,6 @@
+import { generatePath, Link } from 'react-router-dom';
+
+import { AppRoute } from '../../../const';
 import { Offer } from '../../../mocks/types/offers';
 import { capitalizeFirstLetter } from '../../../utils';
 import FavoriteButton from '../favorite-button/favorite-button';
@@ -16,9 +19,9 @@ export default function OfferCard({ cardType, offer }: OfferCardProps): React.JS
     <article className={`${cardType}__card place-card`}>
       {offer.isPremium && <PremiumMark className={'place-card__mark'} />}
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={generatePath(AppRoute.Offer, { id: offer.id })}>
           <img className="place-card__image" src={offer.previewImage} {...CardImgSize[cardType]} alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className={`${cardType}__card-info place-card__info`}>
         <div className="place-card__price-wrapper">
@@ -32,7 +35,7 @@ export default function OfferCard({ cardType, offer }: OfferCardProps): React.JS
         <RatingView className={'place-card'} ratingValue={offer.rating} displayValue={false} />
 
         <h2 className="place-card__name">
-          <a href="#">{offer.title}</a>
+          <Link to={generatePath(AppRoute.Offer, { id: offer.id })} >{offer.title}</Link>
         </h2>
         <p className="place-card__type">{capitalizeFirstLetter(offer.type)}</p>
       </div>
