@@ -9,6 +9,7 @@ import PremiumMark from '../../components/offer/premium-mark/premium-mark';
 import RatingView from '../../components/offer/rating-view/rating-view';
 import ReviewView from '../../components/offer/review-view/review-view';
 import OffersList from '../../components/offers-list/offers-list';
+import ReviewForm from '../../components/review-form/review-form';
 import UserMenu from '../../components/user-menu/user-menu';
 import { ExtendedOffer, Offer } from '../../mocks/types/offers';
 import { Review } from '../../mocks/types/reviews';
@@ -109,6 +110,8 @@ export default function OfferPage({ offers, reviewsMap, extendedOfferMap }: Offe
                   {reviews?.map((review) => <ReviewView review={review} key={review.id} />)}
 
                 </ul>
+
+                <ReviewForm />
               </section>
 
             </div>
