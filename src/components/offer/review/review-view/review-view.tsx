@@ -1,6 +1,6 @@
-import { Review } from '../../../mocks/types/reviews';
-import { formatDate } from '../../../utils';
-import RatingView from '../rating-view/rating-view';
+import { Review } from '../../../../mocks/types/reviews';
+import { formatDate } from '../../../../utils';
+import RatingView from '../../rating-view/rating-view';
 
 type ReviewViewProps = {
   review: Review;

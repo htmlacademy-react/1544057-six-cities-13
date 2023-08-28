@@ -2,7 +2,7 @@ import { OfferReview } from './types/reviews';
 
 const reviews: OfferReview[] = [
   {
-    'id': '7f52958f-7762-4ee1-aff2-04912cd47888',
+    'id': '22ce00cc-b81b-4085-8a27-aebcd80dd266',
     'reviews': [
       {
         'id': 'e78f5c4f-5acb-4047-a561-b4eff8d732dc',
@@ -18,7 +18,7 @@ const reviews: OfferReview[] = [
     ]
   },
   {
-    'id': '0959aa00-4de8-400d-91a6-a73ee223b93a',
+    'id': '8d193608-5355-48c0-83cb-9df6cf53c946',
     'reviews': [
       {
         'id': 'e8bc6b72-8741-4fe8-9dc3-e2d8759fd738',
@@ -34,7 +34,7 @@ const reviews: OfferReview[] = [
     ]
   },
   {
-    'id': 'eb9156d7-bc3a-48d2-8244-d000b3e89e82',
+    'id': '48c7fee7-81b9-4ed9-9d4c-7710fcae40bf',
     'reviews': [
       {
         'id': '079d6414-b05c-427e-b5d8-7049694d43a1',

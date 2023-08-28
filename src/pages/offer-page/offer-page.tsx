@@ -7,9 +7,8 @@ import HostView from '../../components/offer/host-view/host-view';
 import { CardType } from '../../components/offer/offer-card/const';
 import PremiumMark from '../../components/offer/premium-mark/premium-mark';
 import RatingView from '../../components/offer/rating-view/rating-view';
-import ReviewView from '../../components/offer/review-view/review-view';
-import OffersList from '../../components/offers-list/offers-list';
-import ReviewForm from '../../components/review-form/review-form';
+import ReviewForm from '../../components/offer/review/review-form/review-form';
+import ReviewList from '../../components/offer/review/review-list/review-list';
 import UserMenu from '../../components/user-menu/user-menu';
 import { ExtendedOffer, Offer } from '../../mocks/types/offers';
 import { Review } from '../../mocks/types/reviews';
@@ -105,11 +104,8 @@ export default function OfferPage({ offers, reviewsMap, extendedOfferMap }: Offe
 
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews?.length}</span></h2>
-                <ul className="reviews__list">
 
-                  {reviews?.map((review) => <ReviewView review={review} key={review.id} />)}
-
-                </ul>
+                <ReviewList reviews={reviews} />
 
                 <ReviewForm />
               </section>
