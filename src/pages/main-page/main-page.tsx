@@ -4,7 +4,7 @@ import LocationsItem from '../../components/locations-item/locations-item';
 import Logo from '../../components/logo/logo';
 import Map from '../../components/map/map';
 import { CardType } from '../../components/offer/offer-card/const';
-import OffersList from '../../components/offers-list/offers-list';
+import OffersList from '../../components/offer/offers-list/offers-list';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CityName } from '../../const';
 import { Offer } from '../../mocks/types/offers';
@@ -69,7 +69,9 @@ export default function MainPage({ offers }: MainPageProps): React.JSX.Element {
             </section>
             <div className="cities__right-section">
               <Map
-                offers={offers} activeCardId={activeOffer}
+                offers={offers}
+                activeCardId={activeOffer}
+                type={CardType.Cities}
               />
 
             </div>

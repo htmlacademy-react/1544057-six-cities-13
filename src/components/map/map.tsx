@@ -2,15 +2,18 @@ import 'leaflet/dist/leaflet.css';
 
 import { useEffect, useRef } from 'react';
 
+import cn from 'classnames';
 import { Icon, layerGroup, Marker } from 'leaflet';
 
 import { UrlMarker } from '../../const';
 import useMap from '../../hooks/use-map';
 import { Offer } from '../../mocks/types/offers';
+import { CardType } from '../offer/offer-card/const';
 
 type MapProps = {
   offers: Offer[];
   activeCardId: string | null;
+  type: CardType;
 };
 
 const defaultCustomIcon = new Icon({
@@ -25,7 +28,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({ offers, activeCardId }: MapProps): JSX.Element {
+function Map({ offers, activeCardId, type }: MapProps): JSX.Element {
   const { city } = offers[0];
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -54,7 +57,11 @@ function Map({ offers, activeCardId }: MapProps): JSX.Element {
   }, [map, offers, activeCardId]);
 
   return (
-    <section className="cities__map map" style={{ height: '500px' }} ref={mapRef}></section>
+    <section className={cn('map',
+      { 'offer__map': type === CardType.NearPlaces },
+      { 'cities__map': type === CardType.Cities })} style={{ height: '500px' }} ref={mapRef}
+    >
+    </section >
   );
 }
 

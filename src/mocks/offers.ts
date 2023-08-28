@@ -94,7 +94,7 @@ const offers: Offer[] = [
     'rating': 3.1
   },
   {
-    'id': 'aa30f0ef-9fc6-4384-9d68-3750f23ade1c',
+    'id': '7d54ec8d-6359-4a31-89b6-1ed5107a1dcd',
     'title': 'The house among olive ',
     'type': 'apartment',
     'price': 205,
