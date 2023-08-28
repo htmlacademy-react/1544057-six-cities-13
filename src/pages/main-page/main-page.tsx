@@ -1,5 +1,8 @@
+import { useState } from 'react';
+
 import LocationsItem from '../../components/locations-item/locations-item';
 import Logo from '../../components/logo/logo';
+import Map from '../../components/map/map';
 import { CardType } from '../../components/offer/offer-card/const';
 import OffersList from '../../components/offers-list/offers-list';
 import UserMenu from '../../components/user-menu/user-menu';
@@ -11,6 +14,11 @@ type MainPageProps = {
 };
 
 export default function MainPage({ offers }: MainPageProps): React.JSX.Element {
+  const [activeOffer, setActiveOffer] = useState<string | null>(null);
+  const onOfferMouseOver = (id: string) => {
+    setActiveOffer(id);
+  };
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -26,11 +34,13 @@ export default function MainPage({ offers }: MainPageProps): React.JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
+
             <ul className="locations__list tabs__list">
               {Array.from(Object.values(CityName), (cityName, index) => cityName === CityName.Paris ?
                 <LocationsItem nameCity={cityName} path='#todo' isNavItem isActive key={index} /> :
                 <LocationsItem nameCity={cityName} path='#todo' isNavItem key={index} />)}
             </ul>
+
           </section>
         </div>
         <div className="cities">
@@ -54,11 +64,14 @@ export default function MainPage({ offers }: MainPageProps): React.JSX.Element {
                 </ul>
               </form>
 
-              <OffersList offers={offers} cardType={CardType.Cities} />
+              <OffersList offers={offers} cardType={CardType.Cities} onActiveOffer={onOfferMouseOver} />
 
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map
+                offers={offers} activeCardId={activeOffer}
+              />
+
             </div>
           </div>
         </div>

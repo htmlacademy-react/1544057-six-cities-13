@@ -7,9 +7,10 @@ import OfferCard from '../offer/offer-card/offer-card';
 type OffersListProps = {
   offers: Offer[];
   cardType: CardType;
+  onActiveOffer: (id: string) => void;
 }
 
-function OffersList({ offers, cardType }: OffersListProps): React.JSX.Element {
+function OffersList({ offers, cardType, onActiveOffer }: OffersListProps): React.JSX.Element {
   const [, setActiveCard] = useState<null | string>(null);
   return (
     <div className={`${cardType}__places-list places__list`}>
@@ -20,7 +21,10 @@ function OffersList({ offers, cardType }: OffersListProps): React.JSX.Element {
             key={offer.id}
             offer={offer}
             onMouseOver={
-              () => setActiveCard(offer.id)
+              () => {
+                setActiveCard(offer.id);
+                onActiveOffer(offer.id);
+              }
             }
           />
         ))
