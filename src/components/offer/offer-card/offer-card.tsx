@@ -1,3 +1,5 @@
+import { MouseEventHandler } from 'react';
+
 import { generatePath, Link } from 'react-router-dom';
 
 import { AppRoute } from '../../../const';
@@ -11,12 +13,12 @@ import { CardImgSize, CardType } from './const';
 type OfferCardProps = {
   offer: Offer;
   cardType: CardType;
-  onMouseOver?: (event: MouseEvent) => void;
+  onMouseOver?: MouseEventHandler<HTMLElement>;
 }
 
-export default function OfferCard({ cardType, offer }: OfferCardProps): React.JSX.Element {
+export default function OfferCard({ cardType, offer, onMouseOver }: OfferCardProps): React.JSX.Element {
   return (
-    <article className={`${cardType}__card place-card`}>
+    <article className={`${cardType}__card place-card`} onMouseOver={onMouseOver}>
       {offer.isPremium && <PremiumMark className={'place-card__mark'} />}
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
         <Link to={generatePath(AppRoute.Offer, { id: offer.id })}>
