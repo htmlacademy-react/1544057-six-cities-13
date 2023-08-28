@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { Offer } from '../../mocks/types/offers';
-import { CardType } from '../offer/offer-card/const';
-import OfferCard from '../offer/offer-card/offer-card';
+import { Offer } from '../../../mocks/types/offers';
+import { CardType } from '../offer-card/const';
+import OfferCard from '../offer-card/offer-card';
 
 type OffersListProps = {
   offers: Offer[];

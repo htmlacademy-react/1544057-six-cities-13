@@ -1,10 +1,14 @@
+import { useState } from 'react';
+
 import { useParams } from 'react-router-dom';
 
 import Logo from '../../components/logo/logo';
+import Map from '../../components/map/map';
 import FavoriteButton
   from '../../components/offer/favorite-button/favorite-button';
 import HostView from '../../components/offer/host-view/host-view';
 import { CardType } from '../../components/offer/offer-card/const';
+import OffersList from '../../components/offer/offers-list/offers-list';
 import PremiumMark from '../../components/offer/premium-mark/premium-mark';
 import RatingView from '../../components/offer/rating-view/rating-view';
 import ReviewForm from '../../components/offer/review/review-form/review-form';
@@ -22,9 +26,13 @@ type OfferPageProps = {
 };
 
 export default function OfferPage({ offers, reviewsMap, extendedOfferMap }: OfferPageProps): React.JSX.Element {
+  const [activeOffer, setActiveOffer] = useState<string | null>(null);
+  const onOfferMouseOver = (id: string) => {
+    setActiveOffer(id);
+  };
   const { id } = useParams();
   const extendedOffer = extendedOfferMap.get(String(id));
-  const reviews = reviewsMap.get(String(id));
+  const reviews = reviewsMap.get(String(id)) || [];
 
   if (!extendedOffer) {
     return <NotFoundPage />;
@@ -112,13 +120,15 @@ export default function OfferPage({ offers, reviewsMap, extendedOfferMap }: Offe
 
             </div>
           </div>
-          <section className="offer__map map"></section>
+
+          <Map offers={offers} activeCardId={activeOffer} type={CardType.NearPlaces} />
+
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-            <OffersList offers={offers} cardType={CardType.NearPlaces} />
+            <OffersList offers={offers} cardType={CardType.NearPlaces} onActiveOffer={onOfferMouseOver} />
 
           </section>
         </div>
