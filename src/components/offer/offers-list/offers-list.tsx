@@ -7,7 +7,7 @@ import OfferCard from '../offer-card/offer-card';
 type OffersListProps = {
   offers: Offer[];
   cardType: CardType;
-  onActiveOffer: (id: string) => void;
+  onActiveOffer?: (id: string) => void;
 }
 
 function OffersList({ offers, cardType, onActiveOffer }: OffersListProps): React.JSX.Element {
@@ -23,7 +23,9 @@ function OffersList({ offers, cardType, onActiveOffer }: OffersListProps): React
             onMouseOver={
               () => {
                 setActiveCard(offer.id);
-                onActiveOffer(offer.id);
+                if (onActiveOffer) {
+                  onActiveOffer(offer.id);
+                }
               }
             }
           />
