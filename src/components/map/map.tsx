@@ -5,10 +5,9 @@ import { useEffect, useRef } from 'react';
 import cn from 'classnames';
 import { Icon, layerGroup, Marker } from 'leaflet';
 
-import { UrlMarker } from '../../const';
+import { CardType, UrlMarker } from '../../const';
 import useMap from '../../hooks/use-map';
 import { Offer } from '../../mocks/types/offers';
-import { CardType } from '../offer/offer-card/const';
 
 type MapProps = {
   offers: Offer[];

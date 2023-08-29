@@ -7,13 +7,13 @@ import Map from '../../components/map/map';
 import FavoriteButton
   from '../../components/offer/favorite-button/favorite-button';
 import HostView from '../../components/offer/host-view/host-view';
-import { CardType } from '../../components/offer/offer-card/const';
 import OffersList from '../../components/offer/offers-list/offers-list';
 import PremiumMark from '../../components/offer/premium-mark/premium-mark';
 import RatingView from '../../components/offer/rating-view/rating-view';
 import ReviewForm from '../../components/offer/review/review-form/review-form';
 import ReviewList from '../../components/offer/review/review-list/review-list';
 import UserMenu from '../../components/user-menu/user-menu';
+import { CardType } from '../../const';
 import { ExtendedOffer, Offer } from '../../mocks/types/offers';
 import { Review } from '../../mocks/types/reviews';
 import { capitalizeFirstLetter } from '../../utils';
