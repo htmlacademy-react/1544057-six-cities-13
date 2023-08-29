@@ -3,7 +3,7 @@ import Logo from '../../components/logo/logo';
 import OffersList from '../../components/offer/offers-list/offers-list';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CardType, CityName } from '../../const';
-import { Offer } from '../../mocks/types/offers';
+import { Offer } from '../../types/offers';
 
 type FavoritePageProps = {
   favoriteOffers: Offer[];

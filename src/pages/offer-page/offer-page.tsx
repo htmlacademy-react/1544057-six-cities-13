@@ -14,8 +14,8 @@ import ReviewForm from '../../components/offer/review/review-form/review-form';
 import ReviewList from '../../components/offer/review/review-list/review-list';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CardType } from '../../const';
-import { ExtendedOffer, Offer } from '../../mocks/types/offers';
 import { Review } from '../../mocks/types/reviews';
+import { ExtendedOffer, Offer } from '../../types/offers';
 import { capitalizeFirstLetter } from '../../utils';
 import NotFoundPage from '../not-found-page/not-found-page';
 

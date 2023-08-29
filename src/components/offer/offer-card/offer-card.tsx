@@ -3,7 +3,7 @@ import { MouseEventHandler } from 'react';
 import { generatePath, Link } from 'react-router-dom';
 
 import { AppRoute, CardType } from '../../../const';
-import { Offer } from '../../../mocks/types/offers';
+import { Offer } from '../../../types/offers';
 import { capitalizeFirstLetter } from '../../../utils';
 import FavoriteButton from '../favorite-button/favorite-button';
 import PremiumMark from '../premium-mark/premium-mark';

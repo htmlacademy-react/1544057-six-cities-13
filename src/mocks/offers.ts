@@ -1,4 +1,4 @@
-import { ExtendedOffer, Offer } from './types/offers';
+import { ExtendedOffer, Offer } from '../types/offers';
 
 const offers: Offer[] = [
   {

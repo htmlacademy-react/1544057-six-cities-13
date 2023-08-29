@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { CardType } from '../../../const';
-import { Offer } from '../../../mocks/types/offers';
+import { Offer } from '../../../types/offers';
 import OfferCard from '../offer-card/offer-card';
 
 type OffersListProps = {

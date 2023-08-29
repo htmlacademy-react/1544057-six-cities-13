@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import { CityName } from '../const.ts';
 import { offers } from '../mocks/offers.ts';
-import { Offer } from '../mocks/types/offers.ts';
+import { Offer } from '../types/offers.ts';
 import { getOffersPerCity, setActiveCity } from './action.ts';
 
 type InitialState = {

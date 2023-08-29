@@ -7,7 +7,7 @@ import { Icon, layerGroup, Marker } from 'leaflet';
 
 import { CardType, UrlMarker } from '../../const';
 import useMap from '../../hooks/use-map';
-import { Offer } from '../../mocks/types/offers';
+import { Offer } from '../../types/offers';
 
 type MapProps = {
   offers: Offer[];
