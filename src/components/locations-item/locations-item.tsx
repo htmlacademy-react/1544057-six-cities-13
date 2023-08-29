@@ -1,3 +1,5 @@
+import { MouseEventHandler } from 'react';
+
 import { NavLink } from 'react-router-dom';
 
 type LocationsItemProps = {
@@ -5,13 +7,15 @@ type LocationsItemProps = {
   path: string;
   isNavItem?: boolean;
   isActive?: boolean;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
-export default function LocationsItem({ nameCity, path, isNavItem = false, isActive = false }: LocationsItemProps): React.JSX.Element {
+export default function LocationsItem({ nameCity, path, isNavItem = false, isActive = false, onClick }: LocationsItemProps): React.JSX.Element {
   const content = (
     <NavLink
       className={`locations__item-link ${isActive ? 'tabs__item--active' : ''}`}
       to={path}
+      onClick={onClick}
     >
       <span>{nameCity}</span>
     </NavLink>

@@ -23,7 +23,7 @@ function App({ offers, reviewsMap, extendedOfferMap }: AppProps): React.JSX.Elem
         <Route path={AppRoute.Main} >
           <Route
             index
-            element={<MainPage offers={offers} />}
+            element={<MainPage />}
           />
           <Route
             path={AppRoute.Login}
