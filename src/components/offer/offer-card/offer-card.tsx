@@ -2,13 +2,13 @@ import { MouseEventHandler } from 'react';
 
 import { generatePath, Link } from 'react-router-dom';
 
-import { AppRoute } from '../../../const';
-import { Offer } from '../../../mocks/types/offers';
+import { AppRoute, CardType } from '../../../const';
+import { Offer } from '../../../types/offers';
 import { capitalizeFirstLetter } from '../../../utils';
 import FavoriteButton from '../favorite-button/favorite-button';
 import PremiumMark from '../premium-mark/premium-mark';
 import RatingView from '../rating-view/rating-view';
-import { CardImgSize, CardType } from './const';
+import { CardImgSize } from './const';
 
 type OfferCardProps = {
   offer: Offer;

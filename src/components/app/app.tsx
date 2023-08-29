@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { ExtendedOffer, Offer } from '../../mocks/types/offers';
-import { Review } from '../../mocks/types/reviews';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import OfferPage from '../../pages/offer-page/offer-page';
+import { ExtendedOffer, Offer } from '../../types/offers';
+import { Review } from '../../types/reviews';
 import PrivateRoute from '../private-route/private-route';
 
 type AppProps = {
@@ -23,7 +23,7 @@ function App({ offers, reviewsMap, extendedOfferMap }: AppProps): React.JSX.Elem
         <Route path={AppRoute.Main} >
           <Route
             index
-            element={<MainPage offers={offers} />}
+            element={<MainPage />}
           />
           <Route
             path={AppRoute.Login}

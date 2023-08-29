@@ -1,23 +1,26 @@
 import { useState } from 'react';
 
-import LocationsItem from '../../components/locations-item/locations-item';
+import CitiesList from '../../components/cities-list/cities-list';
 import Logo from '../../components/logo/logo';
 import Map from '../../components/map/map';
-import { CardType } from '../../components/offer/offer-card/const';
 import OffersList from '../../components/offer/offers-list/offers-list';
 import UserMenu from '../../components/user-menu/user-menu';
-import { CityName } from '../../const';
-import { Offer } from '../../mocks/types/offers';
+import { CardType, CityName } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setActiveCity } from '../../store/action';
+import { findOffersByCity } from '../../utils';
 
-type MainPageProps = {
-  offers: Offer[];
-};
-
-export default function MainPage({ offers }: MainPageProps): React.JSX.Element {
+export default function MainPage(): React.JSX.Element {
   const [activeOffer, setActiveOffer] = useState<string | null>(null);
   const onOfferMouseOver = (id: string) => {
     setActiveOffer(id);
   };
+
+  const dispatch = useAppDispatch();
+  const activeCity = useAppSelector((state) => state.activeCity);
+  const offers = useAppSelector((state) => state.offers);
+  const offersPerCity = findOffersByCity(offers, activeCity);
+  const onCityClick = (city: CityName) => dispatch(setActiveCity(city));
 
   return (
     <div className="page page--gray page--main">
@@ -33,21 +36,13 @@ export default function MainPage({ offers }: MainPageProps): React.JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <section className="locations container">
-
-            <ul className="locations__list tabs__list">
-              {Array.from(Object.values(CityName), (cityName, index) => cityName === CityName.Paris ?
-                <LocationsItem nameCity={cityName} path='#todo' isNavItem isActive key={index} /> :
-                <LocationsItem nameCity={cityName} path='#todo' isNavItem key={index} />)}
-            </ul>
-
-          </section>
+          <CitiesList activeCity={activeCity} onClick={onCityClick} />
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {CityName.Paris}</b>
+              <b className="places__found">{offersPerCity.length} places to stay in {activeCity}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -64,12 +59,13 @@ export default function MainPage({ offers }: MainPageProps): React.JSX.Element {
                 </ul>
               </form>
 
-              <OffersList offers={offers} cardType={CardType.Cities} onActiveOffer={onOfferMouseOver} />
+              <OffersList offers={offersPerCity} cardType={CardType.Cities} onActiveOffer={onOfferMouseOver} />
 
             </section>
             <div className="cities__right-section">
               <Map
-                offers={offers}
+                activeCity={activeCity}
+                offers={offersPerCity}
                 activeCardId={activeOffer}
                 type={CardType.Cities}
               />

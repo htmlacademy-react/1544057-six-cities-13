@@ -1,10 +1,6 @@
-enum CardType {
-  Favorites = 'favorites',
-  Cities = 'cities',
-  NearPlaces = 'near-places'
-}
+import { CardType } from '../../../const';
 
-const CardImgSize = {
+export const CardImgSize = {
   [CardType.Favorites]: {
     height: 110,
     width: 150
@@ -18,5 +14,3 @@ const CardImgSize = {
     width: 260
   }
 } as const;
-
-export { CardImgSize, CardType };
