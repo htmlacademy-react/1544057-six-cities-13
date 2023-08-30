@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setActiveCity } from '../../store/action';
 import { CityNameType } from '../../types/cityName';
 import { SortingType } from '../../types/sorting';
-import { findOffersByCity } from '../../utils';
+import { findOffersByCity, sorting } from '../../utils';
 
 export default function MainPage(): React.JSX.Element {
   const [activeOffer, setActiveOffer] = useState<string | null>(null);
@@ -21,7 +21,7 @@ export default function MainPage(): React.JSX.Element {
   const dispatch = useAppDispatch();
   const activeCity = useAppSelector((state) => state.activeCity);
   const offers = useAppSelector((state) => state.offers);
-  const offersPerCity = findOffersByCity(offers, activeCity);
+  const offersPerCity = sorting[activeSorting](findOffersByCity(offers, activeCity));
 
   const onOfferMouseOver = (id: string) => setActiveOffer(id);
   const onCityClick = (city: CityNameType) => dispatch(setActiveCity(city));
