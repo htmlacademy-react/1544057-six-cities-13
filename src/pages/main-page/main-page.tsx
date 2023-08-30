@@ -4,18 +4,19 @@ import CitiesList from '../../components/cities-list/cities-list';
 import Logo from '../../components/logo/logo';
 import Map from '../../components/map/map';
 import OffersList from '../../components/offer/offers-list/offers-list';
+import SortingOptions from '../../components/sorting/const';
+import { Sorting } from '../../components/sorting/sorting';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CardType } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setActiveCity } from '../../store/action';
 import { CityNameType } from '../../types/cityName';
+import { SortingType } from '../../types/sorting';
 import { findOffersByCity } from '../../utils';
 
 export default function MainPage(): React.JSX.Element {
   const [activeOffer, setActiveOffer] = useState<string | null>(null);
-  const onOfferMouseOver = (id: string) => {
-    setActiveOffer(id);
-  };
+  const [activeSorting, setActiveSorting] = useState<SortingType>(SortingOptions.Popular);
 
   const dispatch = useAppDispatch();
   const activeCity = useAppSelector((state) => state.activeCity);
@@ -24,6 +25,7 @@ export default function MainPage(): React.JSX.Element {
 
   const onOfferMouseOver = (id: string) => setActiveOffer(id);
   const onCityClick = (city: CityNameType) => dispatch(setActiveCity(city));
+  const onSortChange = (sortType: SortingType) => setActiveSorting(sortType);
 
   return (
     <div className="page page--gray page--main">
@@ -46,21 +48,8 @@ export default function MainPage(): React.JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offersPerCity.length} places to stay in {activeCity}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
+
+              <Sorting activeSorting={activeSorting} onChange={onSortChange} />
 
               <OffersList offers={offersPerCity} cardType={CardType.Cities} onActiveOffer={onOfferMouseOver} />
 
@@ -70,6 +59,7 @@ export default function MainPage(): React.JSX.Element {
                 offers={offersPerCity}
                 activeCardId={activeOffer}
                 type={CardType.Cities}
+                isInteractive
               />
 
             </div>
