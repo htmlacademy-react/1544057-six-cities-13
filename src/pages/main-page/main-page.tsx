@@ -64,7 +64,6 @@ export default function MainPage(): React.JSX.Element {
             </section>
             <div className="cities__right-section">
               <Map
-                activeCity={activeCity}
                 offers={offersPerCity}
                 activeCardId={activeOffer}
                 type={CardType.Cities}
