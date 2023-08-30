@@ -2,11 +2,12 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import { CityName } from '../const.ts';
 import { offers } from '../mocks/offers.ts';
+import { CityNameType } from '../types/cityName.ts';
 import { Offer } from '../types/offers.ts';
 import { getOffersPerCity, setActiveCity } from './action.ts';
 
 type InitialState = {
-  activeCity: CityName;
+  activeCity: CityNameType;
   offers: Offer[];
 }
 

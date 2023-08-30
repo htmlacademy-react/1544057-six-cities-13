@@ -5,9 +5,10 @@ import Logo from '../../components/logo/logo';
 import Map from '../../components/map/map';
 import OffersList from '../../components/offer/offers-list/offers-list';
 import UserMenu from '../../components/user-menu/user-menu';
-import { CardType, CityName } from '../../const';
+import { CardType } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setActiveCity } from '../../store/action';
+import { CityNameType } from '../../types/cityName';
 import { findOffersByCity } from '../../utils';
 
 export default function MainPage(): React.JSX.Element {
@@ -20,7 +21,9 @@ export default function MainPage(): React.JSX.Element {
   const activeCity = useAppSelector((state) => state.activeCity);
   const offers = useAppSelector((state) => state.offers);
   const offersPerCity = findOffersByCity(offers, activeCity);
-  const onCityClick = (city: CityName) => dispatch(setActiveCity(city));
+
+  const onOfferMouseOver = (id: string) => setActiveOffer(id);
+  const onCityClick = (city: CityNameType) => dispatch(setActiveCity(city));
 
   return (
     <div className="page page--gray page--main">

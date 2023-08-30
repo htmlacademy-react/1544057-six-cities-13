@@ -1,9 +1,10 @@
 import { AppRoute, CityName } from '../../const';
+import { CityNameType } from '../../types/cityName';
 import LocationsItem from '../locations-item/locations-item';
 
 type CitiesListProps = {
-  activeCity: CityName;
-  onClick?: (city: CityName) => void;
+  activeCity: CityNameType;
+  onClick?: (city: CityNameType) => void;
 }
 
 function CitiesList({ activeCity, onClick }: CitiesListProps): React.JSX.Element {
