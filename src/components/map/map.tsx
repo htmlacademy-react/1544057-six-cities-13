@@ -13,6 +13,7 @@ type MapProps = {
   offers: Offer[];
   activeCardId: string | null;
   type: CardType;
+  isInteractive?: boolean;
 };
 
 const defaultCustomIcon = new Icon({
@@ -27,7 +28,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({ offers, activeCardId, type }: MapProps): JSX.Element {
+function Map({ offers, activeCardId, type, isInteractive = false }: MapProps): JSX.Element {
   const { city } = offers[0];
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -41,19 +42,22 @@ function Map({ offers, activeCardId, type }: MapProps): JSX.Element {
           lng: offer.location.longitude
         });
 
+        const interactiveCustomIcon = activeCardId && offer.id === activeCardId
+          ? currentCustomIcon
+          : defaultCustomIcon;
+
         marker
           .setIcon(
-            activeCardId && offer.id === activeCardId
-              ? currentCustomIcon
-              : defaultCustomIcon
+            isInteractive ? interactiveCustomIcon : defaultCustomIcon
           ).addTo(markerLayer);
+
       });
 
       return () => {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offers, activeCardId]);
+  }, [map, offers, activeCardId, isInteractive]);
 
   return (
     <section className={cn('map',

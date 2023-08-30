@@ -1,12 +1,12 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { CityName } from '../const';
+import { CityNameType } from '../types/cityName';
 
 enum Action {
   Offers = 'offers'
 }
 
-const setActiveCity = createAction<CityName>(`${Action.Offers}/setActiveCity`);
+const setActiveCity = createAction<CityNameType>(`${Action.Offers}/setActiveCity`);
 const getOffersPerCity = createAction(`${Action.Offers}/get`);
 
 export { getOffersPerCity, setActiveCity };
