@@ -54,7 +54,7 @@ export default function MainPage(): React.JSX.Element {
         <div className="cities">
           <div className="cities__places-container container">
             {isDataLoading ?
-              <GridLoader margin='50' color="#4481c3" cssOverride={{ display: 'block', margin: 'auto' }} /> :
+              <GridLoader margin='50px' color="#4481c3" cssOverride={{ display: 'block', margin: 'auto' }} /> :
               <>
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>

@@ -57,7 +57,7 @@ export default function OfferPage(): React.JSX.Element {
       <main className="page__main page__main--offer">
 
         {isDataLoading ?
-          <GridLoader margin='50' color="#4481c3" cssOverride={{ display: 'block', margin: 'auto' }} /> :
+          <GridLoader margin='50px' color="#4481c3" cssOverride={{ display: 'block', margin: 'auto' }} /> :
           <>
             <section className="offer">
               <div className="offer__gallery-container container">
