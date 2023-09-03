@@ -6,9 +6,9 @@ import cn from 'classnames';
 import { Icon, layerGroup, Marker } from 'leaflet';
 
 import { CardType } from '../../const';
+import { UrlMarker } from '../../hooks/const';
 import useMap from '../../hooks/use-map';
 import { OfferType } from '../../types/offers';
-import { UrlMarker } from './const';
 
 type MapProps = {
   offers: OfferType[];
@@ -59,7 +59,6 @@ function Map({ offers, activeCardId, type, isInteractive = false }: MapProps): J
       };
     }
   }, [map, offers, activeCardId, isInteractive]);
-
   return (
     <section className={cn('map',
       { 'offer__map': type === CardType.NearPlaces },

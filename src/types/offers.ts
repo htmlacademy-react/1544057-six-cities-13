@@ -1,3 +1,4 @@
+import { CityNameType } from './cityName';
 import { UserType } from './reviews';
 
 export type LocationType = {
@@ -7,7 +8,7 @@ export type LocationType = {
 };
 
 export type CityType = {
-  name: string;
+  name: CityNameType;
   location: LocationType;
 };
 
