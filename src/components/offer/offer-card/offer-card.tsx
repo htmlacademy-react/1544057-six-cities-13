@@ -3,7 +3,7 @@ import { MouseEventHandler } from 'react';
 import { generatePath, Link } from 'react-router-dom';
 
 import { AppRoute, CardType } from '../../../const';
-import { Offer } from '../../../types/offers';
+import { OfferType } from '../../../types/offers';
 import { capitalizeFirstLetter } from '../../../utils';
 import FavoriteButton from '../favorite-button/favorite-button';
 import PremiumMark from '../premium-mark/premium-mark';
@@ -11,7 +11,7 @@ import RatingView from '../rating-view/rating-view';
 import { CardImgSize } from './const';
 
 type OfferCardProps = {
-  offer: Offer;
+  offer: OfferType;
   cardType: CardType;
   onMouseOver?: MouseEventHandler<HTMLElement>;
 }

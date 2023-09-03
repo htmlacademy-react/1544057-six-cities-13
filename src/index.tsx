@@ -4,9 +4,10 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import App from './components/app/app';
-import { extendedOfferMap, offers } from './mocks/offers';
-import reviewsMap from './mocks/reviews';
 import store from './store';
+import { fetchOffersAction } from './store/api-actions';
+
+store.dispatch(fetchOffersAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,11 +16,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App
-        offers={offers}
-        reviewsMap={reviewsMap}
-        extendedOfferMap={extendedOfferMap}
-      />
+      <App />
     </React.StrictMode>
   </Provider>
 );

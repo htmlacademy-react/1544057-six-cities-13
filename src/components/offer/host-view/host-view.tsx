@@ -1,7 +1,7 @@
-import { User } from '../../../types/reviews';
+import { UserType } from '../../../types/reviews';
 
 type HostViewProps = {
-  host: User;
+  host: UserType;
   description: string;
 }
 

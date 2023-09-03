@@ -6,17 +6,9 @@ import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import OfferPage from '../../pages/offer-page/offer-page';
-import { ExtendedOffer, Offer } from '../../types/offers';
-import { Review } from '../../types/reviews';
 import PrivateRoute from '../private-route/private-route';
 
-type AppProps = {
-  offers: Offer[];
-  reviewsMap: Map<string, Review[]>;
-  extendedOfferMap: Map<string, ExtendedOffer>;
-}
-
-function App({ offers, reviewsMap, extendedOfferMap }: AppProps): React.JSX.Element {
+function App(): React.JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -35,13 +27,13 @@ function App({ offers, reviewsMap, extendedOfferMap }: AppProps): React.JSX.Elem
               <PrivateRoute
                 authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavoritesPage favoriteOffers={offers} />
+                <FavoritesPage />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage offers={offers} extendedOfferMap={extendedOfferMap} reviewsMap={reviewsMap} />}
+            element={<OfferPage />}
           />
 
 

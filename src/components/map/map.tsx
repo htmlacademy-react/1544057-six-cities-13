@@ -5,12 +5,13 @@ import { useEffect, useRef } from 'react';
 import cn from 'classnames';
 import { Icon, layerGroup, Marker } from 'leaflet';
 
-import { CardType, UrlMarker } from '../../const';
+import { CardType } from '../../const';
+import { UrlMarker } from '../../hooks/const';
 import useMap from '../../hooks/use-map';
-import { Offer } from '../../types/offers';
+import { OfferType } from '../../types/offers';
 
 type MapProps = {
-  offers: Offer[];
+  offers: OfferType[];
   activeCardId: string | null;
   type: CardType;
   isInteractive?: boolean;
@@ -58,7 +59,6 @@ function Map({ offers, activeCardId, type, isInteractive = false }: MapProps): J
       };
     }
   }, [map, offers, activeCardId, isInteractive]);
-
   return (
     <section className={cn('map',
       { 'offer__map': type === CardType.NearPlaces },

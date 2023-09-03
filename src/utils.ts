@@ -1,4 +1,4 @@
-import { Offer } from './types/offers';
+import { OfferType } from './types/offers';
 import { SortingType } from './types/sorting';
 
 function capitalizeFirstLetter(str: string): string {
@@ -10,19 +10,19 @@ function formatDate(dateString: string): string {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
 }
 
-const findOffersByCity = (offers: Offer[], cityName: string) => offers.filter((offer) => offer.city.name === cityName);
+const findOffersByCity = (offers: OfferType[], cityName: string) => offers.filter((offer) => offer.city.name === cityName);
 
-const sortByRating = (offerA: Offer, offerB: Offer) => offerB.rating - offerA.rating;
+const sortByRating = (offerA: OfferType, offerB: OfferType) => offerB.rating - offerA.rating;
 
-const sortLowToHigh = (offerA: Offer, offerB: Offer) => offerA.price - offerB.price;
+const sortLowToHigh = (offerA: OfferType, offerB: OfferType) => offerA.price - offerB.price;
 
-const sortHighToLow = (offerA: Offer, offerB: Offer) => offerB.price - offerA.price;
+const sortHighToLow = (offerA: OfferType, offerB: OfferType) => offerB.price - offerA.price;
 
-const sorting: Record<SortingType, (offers: Offer[]) => Offer[]> =
+const sorting: Record<SortingType, (offers: OfferType[]) => OfferType[]> =
 {
-  Popular: (offersForSort: Offer[]) => offersForSort,
-  LowToHigh: (offersForSort: Offer[]) => offersForSort.slice().sort(sortLowToHigh),
-  HighToLow: (offersForSort: Offer[]) => offersForSort.slice().sort(sortHighToLow),
-  TopRated: (offersForSort: Offer[]) => offersForSort.slice().sort(sortByRating)
+  Popular: (offersForSort: OfferType[]) => offersForSort,
+  LowToHigh: (offersForSort: OfferType[]) => offersForSort.slice().sort(sortLowToHigh),
+  HighToLow: (offersForSort: OfferType[]) => offersForSort.slice().sort(sortHighToLow),
+  TopRated: (offersForSort: OfferType[]) => offersForSort.slice().sort(sortByRating)
 };
 export { capitalizeFirstLetter, findOffersByCity, formatDate, sorting };
