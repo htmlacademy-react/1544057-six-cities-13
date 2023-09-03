@@ -38,3 +38,8 @@ export const CityConfigurations: { [key in CityName]: Location } = {
     zoom: 10
   }
 } as const;
+
+export const UrlMarker = {
+  Default: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
+  Current: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg'
+};
