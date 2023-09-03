@@ -4,10 +4,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AuthorizationStatus } from '../const';
 import { dropToken, saveToken } from '../services/token';
+import { AuthDataType } from '../types/auth-data';
 import { ExtendedOfferType, OfferType } from '../types/offers';
 import { ReviewType } from '../types/reviews';
 import { AppDispatchType, StateType } from '../types/state';
-import { AuthDataType, UserDataType } from '../types/user-data';
+import { UserDataType } from '../types/user-data';
 import {
   getExtendedOffer,
   getFavoriteOffers,
@@ -83,7 +84,7 @@ export const fetchNearOffersAction = createAsyncThunk<void, string, asyncThunkCo
     dispatch(setDataLoadingStatus(false));
   });
 
-export const checkAuthACtion = createAsyncThunk<void, undefined, asyncThunkConfig>(
+export const checkAuthAction = createAsyncThunk<void, undefined, asyncThunkConfig>(
   TypePrefix.CheckAuth,
   async (_arg, { dispatch, extra: api }) => {
     try {

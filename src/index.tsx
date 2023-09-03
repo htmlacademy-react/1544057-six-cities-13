@@ -5,8 +5,9 @@ import { Provider } from 'react-redux';
 
 import App from './components/app/app';
 import store from './store';
-import { fetchOffersAction } from './store/api-actions';
+import { checkAuthAction, fetchOffersAction } from './store/api-actions';
 
+store.dispatch(checkAuthAction());
 store.dispatch(fetchOffersAction());
 
 const root = ReactDOM.createRoot(
