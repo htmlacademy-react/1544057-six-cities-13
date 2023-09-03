@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import GridLoader from 'react-spinners/GridLoader';
 
 import CitiesList from '../../components/cities-list/cities-list';
 import Logo from '../../components/logo/logo';
@@ -10,6 +12,7 @@ import UserMenu from '../../components/user-menu/user-menu';
 import { CardType } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setActiveCity } from '../../store/action';
+import { fetchOffersAction } from '../../store/api-actions';
 import { CityNameType } from '../../types/cityName';
 import { SortingType } from '../../types/sorting';
 import { findOffersByCity, sorting } from '../../utils';
@@ -22,10 +25,15 @@ export default function MainPage(): React.JSX.Element {
   const activeCity = useAppSelector((state) => state.activeCity);
   const offers = useAppSelector((state) => state.offers);
   const offersPerCity = sorting[activeSorting](findOffersByCity(offers, activeCity));
+  const isDataLoading = useAppSelector((state) => state.isDataLoading);
 
   const onOfferMouseOver = (id: string) => setActiveOffer(id);
   const onCityClick = (city: CityNameType) => dispatch(setActiveCity(city));
   const onSortChange = (sortType: SortingType) => setActiveSorting(sortType);
+
+  useEffect(() => {
+    dispatch(fetchOffersAction);
+  }, [dispatch]);
 
   return (
     <div className="page page--gray page--main">
@@ -45,26 +53,32 @@ export default function MainPage(): React.JSX.Element {
         </div>
         <div className="cities">
           <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersPerCity.length} places to stay in {activeCity}</b>
+            {isDataLoading ?
+              <GridLoader margin='50' color="#4481c3" cssOverride={{ display: 'block', margin: 'auto' }} /> :
+              <>
+                <section className="cities__places places">
+                  <h2 className="visually-hidden">Places</h2>
+                  <b className="places__found">{offersPerCity.length} places to stay in {activeCity}</b>
 
-              <Sorting activeSorting={activeSorting} onChange={onSortChange} />
+                  <Sorting activeSorting={activeSorting} onChange={onSortChange} />
 
-              <OffersList offers={offersPerCity} cardType={CardType.Cities} onActiveOffer={onOfferMouseOver} />
+                  <OffersList offers={offersPerCity} cardType={CardType.Cities} onActiveOffer={onOfferMouseOver} />
 
-            </section>
-            <div className="cities__right-section">
-              <Map
-                offers={offersPerCity}
-                activeCardId={activeOffer}
-                type={CardType.Cities}
-                isInteractive
-              />
+                </section>
+                <div className="cities__right-section">
+                  <Map
+                    offers={offersPerCity}
+                    activeCardId={activeOffer}
+                    type={CardType.Cities}
+                    isInteractive
+                  />
 
-            </div>
+                </div>
+              </>}
+
           </div>
         </div>
+
       </main>
     </div>
   );

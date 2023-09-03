@@ -87,7 +87,7 @@ export const fetchReviewsAction = createAsyncThunk<void, string, asyncThunkConfi
     dispatch(setDataLoadingStatus(false));
   });
 
-export const fetchNearbyOffersAction = createAsyncThunk<void, string, asyncThunkConfig>(
+export const fetchNearOffersAction = createAsyncThunk<void, string, asyncThunkConfig>(
   TypePrefix.fetchNearbyOffers,
   async (id, { dispatch, extra: api }) => {
     dispatch(setDataLoadingStatus(true));

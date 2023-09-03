@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
+import GridLoader from 'react-spinners/GridLoader';
 
 import Logo from '../../components/logo/logo';
 import Map from '../../components/map/map';
@@ -14,29 +15,32 @@ import ReviewForm from '../../components/offer/review/review-form/review-form';
 import ReviewList from '../../components/offer/review/review-list/review-list';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CardType } from '../../const';
-import { ExtendedOfferType, OfferType } from '../../types/offers';
-import { ReviewType } from '../../types/reviews';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import {
+  fetchExtendedOfferAction,
+  fetchNearOffersAction,
+  fetchReviewsAction,
+} from '../../store/api-actions';
 import { capitalizeFirstLetter } from '../../utils';
-import NotFoundPage from '../not-found-page/not-found-page';
 
-type OfferPageProps = {
-  offers: OfferType[];
-  reviewsMap: Map<string, ReviewType[]>;
-  extendedOfferMap: Map<string, ExtendedOfferType>;
-};
-
-export default function OfferPage({ offers, reviewsMap, extendedOfferMap }: OfferPageProps): React.JSX.Element {
+export default function OfferPage(): React.JSX.Element {
   const [activeOffer, setActiveOffer] = useState<string | null>(null);
   const onOfferMouseOver = (id: string) => {
     setActiveOffer(id);
   };
   const { id } = useParams();
-  const extendedOffer = extendedOfferMap.get(String(id));
-  const reviews = reviewsMap.get(String(id)) || [];
+  const dispatch = useAppDispatch();
+  const extendedOffer = useAppSelector((state) => state.extendedOffer);
+  const reviews = useAppSelector((state) => state.reviews);
+  const nearOffers = useAppSelector((state) => state.nearOffers);
+  const isDataLoading = useAppSelector((state) => state.isDataLoading);
 
-  if (!extendedOffer) {
-    return <NotFoundPage />;
-  }
+
+  useEffect(() => {
+    dispatch(fetchExtendedOfferAction(id || ''));
+    dispatch(fetchReviewsAction(id || ''));
+    dispatch(fetchNearOffersAction(id || ''));
+  }, [dispatch, id]);
 
   const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, description, host } = extendedOffer;
 
@@ -50,89 +54,96 @@ export default function OfferPage({ offers, reviewsMap, extendedOfferMap }: Offe
           </div>
         </div>
       </header>
-
       <main className="page__main page__main--offer">
-        <section className="offer">
-          <div className="offer__gallery-container container">
-            <div className="offer__gallery">
-              {
-                images.map((imageSrc, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <div className="offer__image-wrapper" key={index}>
-                    <img className="offer__image" src={imageSrc} alt="Photo studio" />
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-          <div className="offer__container container">
-            <div className="offer__wrapper">
-              {isPremium && <PremiumMark className={'offer__mark'} />}
-              <div className="offer__name-wrapper">
 
-                <h1 className="offer__name">
-                  {title}
-                </h1>
-
-                {<FavoriteButton className={'offer'} isFavorite={isFavorite} iconWidth={31} iconHeight={33} />}
-              </div>
-
-              <RatingView className={'offer'} ratingValue={rating} displayValue />
-
-              <ul className="offer__features">
-                <li className="offer__feature offer__feature--entire">
-                  {capitalizeFirstLetter(type)}
-                </li>
-                <li className="offer__feature offer__feature--bedrooms">
-                  {bedrooms} Bedrooms
-                </li>
-                <li className="offer__feature offer__feature--adults">
-                  Max {maxAdults} adults
-                </li>
-              </ul>
-              <div className="offer__price">
-                <b className="offer__price-value">&euro;{price}</b>
-                <span className="offer__price-text">&nbsp;night</span>
-              </div>
-              <div className="offer__inside">
-                <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <ul className="offer__inside-list">
+        {isDataLoading ?
+          <GridLoader margin='50' color="#4481c3" cssOverride={{ display: 'block', margin: 'auto' }} /> :
+          <>
+            <section className="offer">
+              <div className="offer__gallery-container container">
+                <div className="offer__gallery">
                   {
-                    goods.map((item, index) => (
+                    images.map((imageSrc, index) => (
                       // eslint-disable-next-line react/no-array-index-key
-                      <li className="offer__inside-item" key={index}>
-                        {item}
-                      </li>
+                      <div className="offer__image-wrapper" key={index}>
+                        <img className="offer__image" src={imageSrc} alt="Photo studio" />
+                      </div>
                     ))
                   }
-                </ul>
+                </div>
+              </div>
+              <div className="offer__container container">
+                <div className="offer__wrapper">
+                  {isPremium && <PremiumMark className={'offer__mark'} />}
+                  <div className="offer__name-wrapper">
+
+                    <h1 className="offer__name">
+                      {title}
+                    </h1>
+
+                    {<FavoriteButton className={'offer'} isFavorite={isFavorite} iconWidth={31} iconHeight={33} />}
+                  </div>
+
+                  <RatingView className={'offer'} ratingValue={rating} displayValue />
+
+                  <ul className="offer__features">
+                    <li className="offer__feature offer__feature--entire">
+                      {capitalizeFirstLetter(type)}
+                    </li>
+                    <li className="offer__feature offer__feature--bedrooms">
+                      {bedrooms} Bedrooms
+                    </li>
+                    <li className="offer__feature offer__feature--adults">
+                  Max {maxAdults} adults
+                    </li>
+                  </ul>
+                  <div className="offer__price">
+                    <b className="offer__price-value">&euro;{price}</b>
+                    <span className="offer__price-text">&nbsp;night</span>
+                  </div>
+                  <div className="offer__inside">
+                    <h2 className="offer__inside-title">What&apos;s inside</h2>
+                    <ul className="offer__inside-list">
+                      {
+                        goods.map((item, index) => (
+                          // eslint-disable-next-line react/no-array-index-key
+                          <li className="offer__inside-item" key={index}>
+                            {item}
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  </div>
+
+                  <HostView host={host} description={description} />
+
+                  <section className="offer__reviews reviews">
+                    <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews?.length}</span></h2>
+
+                    <ReviewList reviews={reviews} />
+
+                    <ReviewForm />
+                  </section>
+
+                </div>
               </div>
 
-              <HostView host={host} description={description} />
+              <Map offers={nearOffers} activeCardId={activeOffer} type={CardType.NearPlaces} />
 
-              <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews?.length}</span></h2>
+            </section>
+            <div className="container">
+              <section className="near-places places">
+                <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-                <ReviewList reviews={reviews} />
+                <OffersList offers={nearOffers} cardType={CardType.NearPlaces} onActiveOffer={onOfferMouseOver} />
 
-                <ReviewForm />
               </section>
-
             </div>
-          </div>
+          </>}
 
-          <Map offers={offers} activeCardId={activeOffer} type={CardType.NearPlaces} />
-
-        </section>
-        <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
-
-            <OffersList offers={offers} cardType={CardType.NearPlaces} onActiveOffer={onOfferMouseOver} />
-
-          </section>
-        </div>
       </main>
+
+
     </div>
   );
 }

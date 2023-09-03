@@ -20,9 +20,42 @@ type InitialStateType = {
   nearOffers: OfferType[];
   favoriteOffers: OfferType[];
   reviews: ReviewType[];
-  extendedOffer?: ExtendedOfferType;
-  isDataLoading: boolean;
+  extendedOffer: ExtendedOfferType;
+  isDataLoading: number;
 }
+
+const EXTENDED_OFFER_EXAMPLE: ExtendedOfferType = {
+  id: '',
+  title: 'Title',
+  type: 'apartment',
+  price: 0,
+  city: {
+    name: CityName.Paris,
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 0,
+    },
+  },
+  location: {
+    latitude: 0,
+    longitude: 0,
+    zoom: 0,
+  },
+  isFavorite: false,
+  isPremium: false,
+  rating: 0,
+  description: '',
+  bedrooms: 0,
+  goods: [],
+  host: {
+    name: '',
+    avatarUrl: 'img/avatar.svg',
+    isPro: false,
+  },
+  images: [],
+  maxAdults: 0,
+};
 
 const initialState: InitialStateType = {
   activeCity: CityName.Paris,
@@ -30,8 +63,8 @@ const initialState: InitialStateType = {
   nearOffers: [],
   favoriteOffers: [],
   reviews: [],
-  extendedOffer: undefined,
-  isDataLoading: false
+  extendedOffer: EXTENDED_OFFER_EXAMPLE,
+  isDataLoading: 0
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -55,7 +88,11 @@ const reducer = createReducer(initialState, (builder) => {
       state.extendedOffer = action.payload;
     })
     .addCase(setDataLoadingStatus, (state, action) => {
-      state.isDataLoading = action.payload;
+      if (action.payload) {
+        state.isDataLoading += +action.payload;
+      } else {
+        state.isDataLoading -= 1;
+      }
     });
 });
 
