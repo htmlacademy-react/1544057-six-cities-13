@@ -7,10 +7,10 @@ import { Icon, layerGroup, Marker } from 'leaflet';
 
 import { CardType, UrlMarker } from '../../const';
 import useMap from '../../hooks/use-map';
-import { Offer } from '../../types/offers';
+import { OfferType } from '../../types/offers';
 
 type MapProps = {
-  offers: Offer[];
+  offers: OfferType[];
   activeCardId: string | null;
   type: CardType;
   isInteractive?: boolean;

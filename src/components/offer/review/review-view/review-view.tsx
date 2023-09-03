@@ -1,9 +1,9 @@
-import { Review } from '../../../../types/reviews';
+import { ReviewType } from '../../../../types/reviews';
 import { formatDate } from '../../../../utils';
 import RatingView from '../../rating-view/rating-view';
 
 type ReviewViewProps = {
-  review: Review;
+  review: ReviewType;
 }
 
 export default function ReviewView({ review }: ReviewViewProps): React.JSX.Element {

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 import { CardType } from '../../../const';
-import { Offer } from '../../../types/offers';
+import { OfferType } from '../../../types/offers';
 import OfferCard from '../offer-card/offer-card';
 
 type OffersListProps = {
-  offers: Offer[];
+  offers: OfferType[];
   cardType: CardType;
   onActiveOffer?: (id: string) => void;
 }

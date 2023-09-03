@@ -1,18 +1,18 @@
-export type User = {
+export type UserType = {
   name: string;
   avatarUrl: string;
   isPro: boolean;
 };
 
-export type Review = {
+export type ReviewType = {
   id: string;
   comment: string;
   date: string;
   rating: number;
-  user: User;
+  user: UserType;
 };
 
-export type OfferReview = {
+export type OfferReviewType = {
   id: string;
-  reviews: Review[];
+  reviews: ReviewType[];
 };

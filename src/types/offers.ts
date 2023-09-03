@@ -1,34 +1,34 @@
-import { User } from './reviews';
+import { UserType } from './reviews';
 
-export type Location = {
+export type LocationType = {
   latitude: number;
   longitude: number;
   zoom: number;
 };
 
-export type City = {
+export type CityType = {
   name: string;
-  location: Location;
+  location: LocationType;
 };
 
-export type Offer = {
+export type OfferType = {
   id: string;
   title: string;
   type: string;
   price: number;
   previewImage: string;
-  city: City;
-  location: Location;
+  city: CityType;
+  location: LocationType;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
 }
 
-export type ExtendedOffer = Omit<Offer, 'previewImage'> & {
+export type ExtendedOfferType = Omit<OfferType, 'previewImage'> & {
   description: string;
   bedrooms: number;
   goods: string[];
-  host: User;
+  host: UserType;
   images: string[];
   maxAdults: number;
 };

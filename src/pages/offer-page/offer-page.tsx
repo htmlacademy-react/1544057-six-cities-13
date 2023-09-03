@@ -14,15 +14,15 @@ import ReviewForm from '../../components/offer/review/review-form/review-form';
 import ReviewList from '../../components/offer/review/review-list/review-list';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CardType } from '../../const';
-import { ExtendedOffer, Offer } from '../../types/offers';
-import { Review } from '../../types/reviews';
+import { ExtendedOfferType, OfferType } from '../../types/offers';
+import { ReviewType } from '../../types/reviews';
 import { capitalizeFirstLetter } from '../../utils';
 import NotFoundPage from '../not-found-page/not-found-page';
 
 type OfferPageProps = {
-  offers: Offer[];
-  reviewsMap: Map<string, Review[]>;
-  extendedOfferMap: Map<string, ExtendedOffer>;
+  offers: OfferType[];
+  reviewsMap: Map<string, ReviewType[]>;
+  extendedOfferMap: Map<string, ExtendedOfferType>;
 };
 
 export default function OfferPage({ offers, reviewsMap, extendedOfferMap }: OfferPageProps): React.JSX.Element {

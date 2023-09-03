@@ -6,14 +6,14 @@ import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import OfferPage from '../../pages/offer-page/offer-page';
-import { ExtendedOffer, Offer } from '../../types/offers';
-import { Review } from '../../types/reviews';
+import { ExtendedOfferType, OfferType } from '../../types/offers';
+import { ReviewType } from '../../types/reviews';
 import PrivateRoute from '../private-route/private-route';
 
 type AppProps = {
-  offers: Offer[];
-  reviewsMap: Map<string, Review[]>;
-  extendedOfferMap: Map<string, ExtendedOffer>;
+  offers: OfferType[];
+  reviewsMap: Map<string, ReviewType[]>;
+  extendedOfferMap: Map<string, ExtendedOfferType>;
 }
 
 function App({ offers, reviewsMap, extendedOfferMap }: AppProps): React.JSX.Element {
