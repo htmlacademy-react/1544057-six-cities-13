@@ -15,6 +15,7 @@ import {
   getNearOffers,
   getOffers,
   getReviews,
+  redirectToRoute,
   setAuthorizationStatus,
   setDataLoadingStatus,
   setUserEmail,
@@ -106,6 +107,7 @@ export const loginAction = createAsyncThunk<void, AuthDataType, asyncThunkConfig
 
     dispatch(setUserEmail(authData.email));
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+    dispatch(redirectToRoute(AppRoute.Main));
   },
 );
 
