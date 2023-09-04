@@ -37,9 +37,12 @@ export default function OfferPage(): React.JSX.Element {
 
 
   useEffect(() => {
-    dispatch(fetchExtendedOfferAction(id || ''));
-    dispatch(fetchReviewsAction(id || ''));
-    dispatch(fetchNearOffersAction(id || ''));
+    if (id) {
+      dispatch(fetchExtendedOfferAction(id));
+      dispatch(fetchReviewsAction(id));
+      dispatch(fetchNearOffersAction(id));
+    }
+
   }, [dispatch, id]);
 
   const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, description, host } = extendedOffer;
@@ -57,7 +60,7 @@ export default function OfferPage(): React.JSX.Element {
       <main className="page__main page__main--offer">
 
         {isDataLoading ?
-          <GridLoader margin='50' color="#4481c3" cssOverride={{ display: 'block', margin: 'auto' }} /> :
+          <GridLoader margin='50px' color="#4481c3" cssOverride={{ display: 'block', margin: 'auto' }} /> :
           <>
             <section className="offer">
               <div className="offer__gallery-container container">

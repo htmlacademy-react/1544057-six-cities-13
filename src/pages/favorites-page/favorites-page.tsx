@@ -31,7 +31,7 @@ export default function FavoritesPage(): React.JSX.Element {
         </div>
       </header>
       {isDataLoading ?
-        <GridLoader margin='50' color="#4481c3" cssOverride={{ margin: 'auto' }} /> :
+        <GridLoader margin='50px' color="#4481c3" cssOverride={{ margin: 'auto' }} /> :
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">
             <section className="favorites">

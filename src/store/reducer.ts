@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { CityName } from '../const.ts';
+import { AuthorizationStatus, CityName } from '../const.ts';
 import { CityNameType } from '../types/cityName.ts';
 import { ExtendedOfferType, OfferType } from '../types/offers.ts';
 import { ReviewType } from '../types/reviews.ts';
@@ -11,7 +11,9 @@ import {
   getOffers,
   getReviews,
   setActiveCity,
+  setAuthorizationStatus,
   setDataLoadingStatus,
+  setUserEmail,
 } from './action.ts';
 
 type InitialStateType = {
@@ -22,6 +24,8 @@ type InitialStateType = {
   reviews: ReviewType[];
   extendedOffer: ExtendedOfferType;
   isDataLoading: number;
+  authorizationStatus: AuthorizationStatus;
+  userEmail?: string;
 }
 
 const EXTENDED_OFFER_EXAMPLE: ExtendedOfferType = {
@@ -64,7 +68,9 @@ const initialState: InitialStateType = {
   favoriteOffers: [],
   reviews: [],
   extendedOffer: EXTENDED_OFFER_EXAMPLE,
-  isDataLoading: 0
+  isDataLoading: 0,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  userEmail: undefined,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -93,6 +99,12 @@ const reducer = createReducer(initialState, (builder) => {
       } else {
         state.isDataLoading -= 1;
       }
+    })
+    .addCase(setAuthorizationStatus, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setUserEmail, (state, action) => {
+      state.userEmail = action.payload;
     });
 });
 
