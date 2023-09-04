@@ -28,4 +28,4 @@ export enum CardType {
 }
 
 export const REVIEWS_MAX_COUNT = 10;
-export const NEARBY_OFFERS_MAX_COUNT = 3;
+export const NEAR_OFFERS_MAX_COUNT = 3;
