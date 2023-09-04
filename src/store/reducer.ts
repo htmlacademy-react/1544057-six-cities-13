@@ -13,6 +13,7 @@ import {
   setActiveCity,
   setAuthorizationStatus,
   setDataLoadingStatus,
+  setUserEmail,
 } from './action.ts';
 
 type InitialStateType = {
@@ -24,6 +25,7 @@ type InitialStateType = {
   extendedOffer: ExtendedOfferType;
   isDataLoading: number;
   authorizationStatus: AuthorizationStatus;
+  userEmail?: string;
 }
 
 const EXTENDED_OFFER_EXAMPLE: ExtendedOfferType = {
@@ -67,7 +69,8 @@ const initialState: InitialStateType = {
   reviews: [],
   extendedOffer: EXTENDED_OFFER_EXAMPLE,
   isDataLoading: 0,
-  authorizationStatus: AuthorizationStatus.Unknown
+  authorizationStatus: AuthorizationStatus.Unknown,
+  userEmail: undefined,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -99,6 +102,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setUserEmail, (state, action) => {
+      state.userEmail = action.payload;
     });
 });
 

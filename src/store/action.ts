@@ -10,7 +10,8 @@ enum Action {
   Offer = 'offer',
   Reviews = 'reviews',
   Data = 'data',
-  User = 'user'
+  User = 'user',
+  App = 'app'
 }
 
 const setActiveCity = createAction<CityNameType>(`${Action.Offers}/setActiveCity`);
@@ -21,6 +22,7 @@ const getExtendedOffer = createAction<ExtendedOfferType>(`${Action.Offer}/get`);
 const getReviews = createAction<ReviewType[]>(`${Action.Reviews}/get`);
 const setDataLoadingStatus = createAction<boolean>(`${Action.Data}/set`);
 const setAuthorizationStatus = createAction<AuthorizationStatus>(`${Action.User}/setAuthorizationStatus`);
+const setUserEmail = createAction<string>(`${Action.Data}/setUserEmail`);
 
 export {
   getExtendedOffer,
@@ -31,4 +33,5 @@ export {
   setActiveCity,
   setAuthorizationStatus,
   setDataLoadingStatus,
+  setUserEmail,
 };

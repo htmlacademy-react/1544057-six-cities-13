@@ -41,7 +41,7 @@ export default function MainPage(): React.JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <Logo />
-            <UserMenu userMail='Oliver.conner@gmail.com' favoriteCount={3} />
+            <UserMenu />
           </div>
         </div>
       </header>

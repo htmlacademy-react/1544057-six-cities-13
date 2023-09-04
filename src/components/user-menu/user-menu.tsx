@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../const';
+import { useAppSelector } from '../../hooks';
 
-type UserMenuProps = {
-  userMail?: string;
-  favoriteCount?: number;
-};
+export default function UserMenu() {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const userEmail = useAppSelector((state) => state.userEmail);
+  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
 
-export default function UserMenu({ userMail, favoriteCount }: UserMenuProps) {
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
@@ -15,15 +15,15 @@ export default function UserMenu({ userMail, favoriteCount }: UserMenuProps) {
           <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
             <div className="header__avatar-wrapper user__avatar-wrapper">
             </div>
-            {userMail ? (
-              <span className="header__user-name user__name">{userMail}</span>
+            {authorizationStatus ? (
+              <span className="header__user-name user__name">{userEmail}</span>
             ) : (
               <span className="header__login">Sign in</span>)}
-            {userMail && <span className="header__favorite-count">{favoriteCount}</span>}
+            {userEmail && <span className="header__favorite-count">{favoriteOffers.length}</span>}
 
           </Link>
         </li>
-        {userMail && (
+        {authorizationStatus && (
           <li className="header__nav-item">
             <Link className="header__nav-link" to={AppRoute.Login}>
               <span className="header__signout">Sign out</span>
