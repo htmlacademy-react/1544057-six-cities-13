@@ -14,11 +14,12 @@ type OfferCardProps = {
   offer: OfferType;
   cardType: CardType;
   onMouseOver?: MouseEventHandler<HTMLElement>;
+  onClick?: MouseEventHandler<HTMLElement>;
 }
 
-export default function OfferCard({ cardType, offer, onMouseOver }: OfferCardProps): React.JSX.Element {
+export default function OfferCard({ cardType, offer, onMouseOver, onClick }: OfferCardProps): React.JSX.Element {
   return (
-    <article className={`${cardType}__card place-card`} onMouseOver={onMouseOver}>
+    <article className={`${cardType}__card place-card`} onMouseOver={onMouseOver} onClick={onClick}>
       {offer.isPremium && <PremiumMark className={'place-card__mark'} />}
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
         <Link to={generatePath(AppRoute.Offer, { id: offer.id })}>

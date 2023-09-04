@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import browserHistory from '../../browser-history/browser-history';
 import { AppRoute } from '../../const';
+import { useAppSelector } from '../../hooks';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
@@ -11,6 +12,8 @@ import HistoryRouter from '../history-route/history-route';
 import PrivateRoute from '../private-route/private-route';
 
 function App(): React.JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
@@ -26,7 +29,7 @@ function App(): React.JSX.Element {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute >
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <FavoritesPage />
               </PrivateRoute>
             }
@@ -35,7 +38,6 @@ function App(): React.JSX.Element {
             path={AppRoute.Offer}
             element={<OfferPage />}
           />
-
 
           <Route path='*' element={<NotFoundPage />}></Route>
         </Route>

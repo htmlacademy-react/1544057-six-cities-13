@@ -13,7 +13,7 @@ import { fetchFavoriteOffersAction } from '../../store/api-actions';
 export default function FavoritesPage(): React.JSX.Element {
   const dispatch = useAppDispatch();
   const favoritesOffers = useAppSelector((state) => state.favoriteOffers);
-  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+  const isFavoriteDataLoading = useAppSelector((state) => state.isFavoriteDataLoading);
 
 
   useEffect(() => {
@@ -26,11 +26,11 @@ export default function FavoritesPage(): React.JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <Logo />
-            <UserMenu userMail='Oliver.conner@gmail.com' favoriteCount={3} />
+            <UserMenu />
           </div>
         </div>
       </header>
-      {isDataLoading ?
+      {isFavoriteDataLoading ?
         <GridLoader margin='50px' color="#4481c3" cssOverride={{ margin: 'auto' }} /> :
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">
@@ -38,11 +38,11 @@ export default function FavoritesPage(): React.JSX.Element {
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
                 {Array.from(Object.values(CityName), (cityName) => {
-                  const offerPerCity = favoritesOffers.filter(
+                  const offerPerCity = favoritesOffers?.filter(
                     ({ city }) => cityName === city.name
                   );
 
-                  return offerPerCity.length ? (
+                  return offerPerCity?.length ? (
                     <li className="favorites__locations-items">
                       <div className="favorites__locations locations locations--current">
                         <LocationsItem nameCity={cityName} path='#' />

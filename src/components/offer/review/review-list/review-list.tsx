@@ -1,4 +1,6 @@
+import { REVIEWS_MAX_COUNT } from '../../../../const';
 import { ReviewType } from '../../../../types/reviews';
+import { sortReviews } from '../../../../utils';
 import ReviewView from '../review-view/review-view';
 
 type ReviewListProps = {
@@ -6,10 +8,11 @@ type ReviewListProps = {
 }
 
 function ReviewList({ reviews }: ReviewListProps) {
+  const filteredReviews = sortReviews(reviews).slice(0, REVIEWS_MAX_COUNT);
   return (
     <ul className="reviews__list">
 
-      {reviews.map((review) => <ReviewView review={review} key={review.id} />)}
+      {filteredReviews.map((review) => <ReviewView review={review} key={review.id} />)}
 
     </ul>
   );
