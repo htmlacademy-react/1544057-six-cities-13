@@ -11,7 +11,7 @@ import { Sorting } from '../../components/sorting/sorting';
 import UserMenu from '../../components/user-menu/user-menu';
 import { CardType } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setActiveCity } from '../../store/action';
+import { setActiveCity, setOffersLoadingStatus } from '../../store/action';
 import { fetchOffersAction } from '../../store/api-actions';
 import { CityNameType } from '../../types/cityName';
 import { SortingType } from '../../types/sorting';
@@ -24,16 +24,26 @@ export default function MainPage(): React.JSX.Element {
   const dispatch = useAppDispatch();
   const activeCity = useAppSelector((state) => state.activeCity);
   const offers = useAppSelector((state) => state.offers);
-  const offersPerCity = sorting[activeSorting](findOffersByCity(offers, activeCity));
-  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+  const userData = useAppSelector((state) => state.userData);
+  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
+  const isDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-  const onOfferMouseOver = (id: string) => setActiveOffer(id);
-  const onCityClick = (city: CityNameType) => dispatch(setActiveCity(city));
-  const onSortChange = (sortType: SortingType) => setActiveSorting(sortType);
+  const handleOfferMouseOver = (id: string) => setActiveOffer(id);
+  const handleCityClick = (city: CityNameType) => dispatch(setActiveCity(city));
+  const handleSortChange = (sortType: SortingType) => setActiveSorting(sortType);
 
   useEffect(() => {
     dispatch(fetchOffersAction);
   }, [dispatch]);
+
+  useEffect(() => {
+    if (offers && userData && favoriteOffers) {
+      dispatch(setOffersLoadingStatus(false));
+    }
+  }, [dispatch, favoriteOffers, offers, userData, authorizationStatus]);
+
+  const offersPerCity = offers ? sorting[activeSorting](findOffersByCity(offers, activeCity)) : [];
 
   return (
     <div className="page page--gray page--main">
@@ -49,35 +59,32 @@ export default function MainPage(): React.JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <CitiesList activeCity={activeCity} onClick={onCityClick} />
+          <CitiesList activeCity={activeCity} onClick={handleCityClick} />
         </div>
-        <div className="cities">
-          <div className="cities__places-container container">
-            {isDataLoading ?
-              <GridLoader margin='50px' color="#4481c3" cssOverride={{ display: 'block', margin: 'auto' }} /> :
-              <>
-                <section className="cities__places places">
-                  <h2 className="visually-hidden">Places</h2>
-                  <b className="places__found">{offersPerCity.length} places to stay in {activeCity}</b>
+        {isDataLoading ?
+          <GridLoader margin='50px' color="#4481c3" cssOverride={{ display: 'block', margin: 'auto' }} /> :
+          <div className="cities">
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">{offersPerCity.length} places to stay in {activeCity}</b>
 
-                  <Sorting activeSorting={activeSorting} onChange={onSortChange} />
+                <Sorting activeSorting={activeSorting} onChange={handleSortChange} />
 
-                  <OffersList offers={offersPerCity} cardType={CardType.Cities} onActiveOffer={onOfferMouseOver} />
+                <OffersList offers={offersPerCity} cardType={CardType.Cities} onActiveOffer={handleOfferMouseOver} />
 
-                </section>
-                <div className="cities__right-section">
-                  <Map
-                    offers={offersPerCity}
-                    activeCardId={activeOffer}
-                    type={CardType.Cities}
-                    isInteractive
-                  />
+              </section>
+              <div className="cities__right-section">
+                <Map
+                  offers={offersPerCity}
+                  activeCardId={activeOffer}
+                  type={CardType.Cities}
+                  isInteractive
+                />
 
-                </div>
-              </>}
-
-          </div>
-        </div>
+              </div>
+            </div>
+          </div>}
 
       </main>
     </div>

@@ -3,6 +3,8 @@ import { BACKEND_URL, REQUEST_TIMEOUT } from './const';
 import { getToken } from './token';
 import { toast } from 'react-toastify';
 import { StatusCodes } from 'http-status-codes';
+import browserHistory from '../browser-history/browser-history';
+import { AppRoute } from '../const';
 
 type DetailMessageType = {
   type: string;
@@ -40,7 +42,11 @@ export const createAPI = (): AxiosInstance => {
     (error: AxiosError<DetailMessageType>) => {
       if (error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
-        toast.warn(detailMessage.message);
+        toast.warn<string>(detailMessage.message);
+      }
+
+      if (error.response?.status === StatusCodes.NOT_FOUND) {
+        browserHistory.push(AppRoute.PageNotFound);
       }
 
       throw error;

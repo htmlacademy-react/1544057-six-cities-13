@@ -7,6 +7,7 @@ export enum TypePrefix {
   CheckAuth = 'user/checkAuth',
   Login = 'user/login',
   Logout = 'user/logout',
+  sendReview = 'data/sendReview'
 }
 
 export const APIRoute = {

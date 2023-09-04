@@ -26,3 +26,6 @@ export enum CardType {
   Cities = 'cities',
   NearPlaces = 'near-places'
 }
+
+export const REVIEWS_MAX_COUNT = 10;
+export const NEARBY_OFFERS_MAX_COUNT = 3;

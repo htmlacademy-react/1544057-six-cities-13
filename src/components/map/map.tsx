@@ -12,8 +12,8 @@ import { OfferType } from '../../types/offers';
 
 type MapProps = {
   offers: OfferType[];
-  activeCardId: string | null;
   type: CardType;
+  activeCardId?: string | null;
   isInteractive?: boolean;
 };
 

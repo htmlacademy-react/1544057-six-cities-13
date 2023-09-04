@@ -1,6 +1,12 @@
 import { useState } from 'react';
 
 import { CardType } from '../../../const';
+import { useAppDispatch } from '../../../hooks';
+import {
+  fetchExtendedOfferAction,
+  fetchNearOffersAction,
+  fetchReviewsAction,
+} from '../../../store/api-actions';
 import { OfferType } from '../../../types/offers';
 import OfferCard from '../offer-card/offer-card';
 
@@ -12,6 +18,8 @@ type OffersListProps = {
 
 function OffersList({ offers, cardType, onActiveOffer }: OffersListProps): React.JSX.Element {
   const [, setActiveCard] = useState<null | string>(null);
+  const dispatch = useAppDispatch();
+
   return (
     <div className={`${cardType}__places-list places__list`}>
       {
@@ -28,6 +36,11 @@ function OffersList({ offers, cardType, onActiveOffer }: OffersListProps): React
                 }
               }
             }
+            onClick={() => {
+              dispatch(fetchExtendedOfferAction(offer.id));
+              dispatch(fetchReviewsAction(offer.id));
+              dispatch(fetchNearOffersAction(offer.id));
+            }}
           />
         ))
       }
