@@ -1,6 +1,4 @@
-import lodash from 'lodash';
-
-import { NEARBY_OFFERS_MAX_COUNT } from './const';
+import { NEAR_OFFERS_MAX_COUNT } from './const';
 import { OfferType } from './types/offers';
 import { ReviewType } from './types/reviews';
 import { SortingType } from './types/sorting';
@@ -34,16 +32,18 @@ const sorting: Record<SortingType, (offers: OfferType[]) => OfferType[]> =
   TopRated: (offersForSort: OfferType[]) => offersForSort.slice().sort(sortByRating)
 };
 
-const getRandomOffers = (offers: OfferType[]): OfferType[] => {
-  const shuffleOffers = lodash.shuffle(offers);
-  return lodash.sampleSize(shuffleOffers, NEARBY_OFFERS_MAX_COUNT);
+const shuffleArr = <T>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
+
+const getFilteredNearOffers = (offers: OfferType[]): OfferType[] => {
+  const shuffleOffers = shuffleArr<OfferType>(offers);
+  return shuffleOffers.slice(0, NEAR_OFFERS_MAX_COUNT);
 };
 
 export {
   capitalizeFirstLetter,
   findOffersByCity,
   formatDate,
-  getRandomOffers,
+  getFilteredNearOffers,
   sorting,
   sortReviews,
 };

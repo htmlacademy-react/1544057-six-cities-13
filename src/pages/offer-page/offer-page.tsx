@@ -22,7 +22,7 @@ import {
   fetchReviewsAction,
 } from '../../store/api-actions';
 import { OfferType } from '../../types/offers';
-import { capitalizeFirstLetter, getRandomOffers } from '../../utils';
+import { capitalizeFirstLetter, getFilteredNearOffers } from '../../utils';
 
 export default function OfferPage(): React.JSX.Element {
   const { id } = useParams();
@@ -41,7 +41,7 @@ export default function OfferPage(): React.JSX.Element {
   const isAuthUser = authorizationStatus === AuthorizationStatus.Auth;
   const isDataLoading = isOfferDataLoading || isNearOffersDataLoading || isReviewsDataLoading || isAuthDataLoading;
 
-  const filterNearOffers: OfferType[] = getRandomOffers(nearOffers || []);
+  const filterNearOffers: OfferType[] = getFilteredNearOffers(nearOffers || []);
   if (currentOffer) {
     filterNearOffers.push(currentOffer);
   }
