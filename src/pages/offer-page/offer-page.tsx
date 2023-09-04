@@ -37,9 +37,12 @@ export default function OfferPage(): React.JSX.Element {
 
 
   useEffect(() => {
-    dispatch(fetchExtendedOfferAction(id || ''));
-    dispatch(fetchReviewsAction(id || ''));
-    dispatch(fetchNearOffersAction(id || ''));
+    if (id) {
+      dispatch(fetchExtendedOfferAction(id));
+      dispatch(fetchReviewsAction(id));
+      dispatch(fetchNearOffersAction(id));
+    }
+
   }, [dispatch, id]);
 
   const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, description, host } = extendedOffer;
